@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monster", "Monster\Monster.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monster.Tests", "Monster.Tests\Monster.Tests.csproj", "{FB0140DC-CF25-40EA-AF45-D36B03D1149B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{0D53AA7D-CA72-4E32-BF76-E53552917C65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseRest", "FirebaseRest\FirebaseRest.csproj", "{07C16879-2C42-4208-ABD0-C3F82D61CFB1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{FB0140DC-CF25-40EA-AF45-D36B03D1149B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB0140DC-CF25-40EA-AF45-D36B03D1149B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB0140DC-CF25-40EA-AF45-D36B03D1149B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D53AA7D-CA72-4E32-BF76-E53552917C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D53AA7D-CA72-4E32-BF76-E53552917C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D53AA7D-CA72-4E32-BF76-E53552917C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D53AA7D-CA72-4E32-BF76-E53552917C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07C16879-2C42-4208-ABD0-C3F82D61CFB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07C16879-2C42-4208-ABD0-C3F82D61CFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07C16879-2C42-4208-ABD0-C3F82D61CFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07C16879-2C42-4208-ABD0-C3F82D61CFB1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
