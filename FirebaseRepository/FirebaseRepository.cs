@@ -68,5 +68,10 @@ namespace FirebaseRepository
             var results = await _query.Child(_path).OrderBy(key).EqualTo(value).GetAsync<T>();
             return results;
         }
+
+        public string GetPath()
+        {
+            return _path;
+        }
     }
 }

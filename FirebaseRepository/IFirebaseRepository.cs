@@ -14,5 +14,6 @@ namespace FirebaseRepository
         Task<T> PatchAsync(T entity, string key = null);
         Task DeleteAsync(string key);
         Task<IReadOnlyCollection<FirebaseObject<T>>> SearchByKeyValueAsync(string key, string value);
+        string GetPath();
     }
 }
