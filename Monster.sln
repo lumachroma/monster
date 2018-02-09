@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseRest", "FirebaseRest\FirebaseRest.csproj", "{07C16879-2C42-4208-ABD0-C3F82D61CFB1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseRepository", "FirebaseRepository\FirebaseRepository.csproj", "{75931FC9-E698-4ADC-AA83-220407AF2168}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{07C16879-2C42-4208-ABD0-C3F82D61CFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07C16879-2C42-4208-ABD0-C3F82D61CFB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07C16879-2C42-4208-ABD0-C3F82D61CFB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75931FC9-E698-4ADC-AA83-220407AF2168}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75931FC9-E698-4ADC-AA83-220407AF2168}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75931FC9-E698-4ADC-AA83-220407AF2168}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75931FC9-E698-4ADC-AA83-220407AF2168}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
