@@ -5,7 +5,7 @@ using FirebaseRest;
 using FirebaseRest.Extensions;
 using FirebaseRest.Models;
 using Newtonsoft.Json;
-using Sandbox.Models;
+using Sandbox.Models.AddressBook;
 
 namespace Sandbox
 {
