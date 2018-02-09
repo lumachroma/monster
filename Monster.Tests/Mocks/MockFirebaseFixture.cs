@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Monster.Tests.FirebaseRest
+namespace Monster.Tests.Mocks
 {
     public class MockFirebaseFixture
     {

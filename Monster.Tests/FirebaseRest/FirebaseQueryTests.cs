@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using FirebaseRest;
 using FirebaseRest.Extensions;
 using FirebaseRest.Models;
+using Monster.Tests.Mocks;
 using Newtonsoft.Json;
 using Xunit;
 
