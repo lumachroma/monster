@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using FirebaseRepository;
 
-namespace Sandbox.Models
+namespace Sandbox.Models.AddressBook
 {
-    public class AddressBook
+    public class AddressBook: IFirebaseEntity
     {
         public AddressBook()
         {
@@ -20,5 +21,12 @@ namespace Sandbox.Models
         public Address Address { get; set; }
         public string ProfilePictureUrl { get; set; }
         public string UserId { get; set; }
+
+        public string ChangedBy { get; set; }
+        public DateTime ChangedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public string Id { get; set; }
+        public string WebId { get; set; }
     }
 }

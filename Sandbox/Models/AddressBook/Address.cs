@@ -1,4 +1,4 @@
-﻿namespace Sandbox.Models
+﻿namespace Sandbox.Models.AddressBook
 {
     public class Address
     {
