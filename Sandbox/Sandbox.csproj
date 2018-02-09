@@ -49,11 +49,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FirebaseRepository.cs" />
     <Compile Include="FirebaseRest.cs" />
-    <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\AddressBook.cs" />
-    <Compile Include="Models\ContactInformation.cs" />
-    <Compile Include="Models\GeoLocation.cs" />
+    <Compile Include="Models\AddressBook\Address.cs" />
+    <Compile Include="Models\AddressBook\AddressBook.cs" />
+    <Compile Include="Models\AddressBook\ContactInformation.cs" />
+    <Compile Include="Models\AddressBook\GeoLocation.cs" />
+    <Compile Include="Models\LocalUser\ExternalUser.cs" />
+    <Compile Include="Models\LocalUser\LocalUser.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -61,6 +64,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\FirebaseRepository\FirebaseRepository.csproj">
+      <Project>{75931FC9-E698-4ADC-AA83-220407AF2168}</Project>
+      <Name>FirebaseRepository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
