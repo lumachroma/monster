@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using FirebaseRest;
 using FirebaseRest.Extensions;
 using FirebaseRest.Models;
+using Newtonsoft.Json;
 
 namespace FirebaseRepository
 {
     public class FirebaseRepository<T> : IFirebaseRepository<T> where T : class, IFirebaseEntity, new()
     {
+        private readonly string _node;
         private readonly FirebaseQuery _query;
-        private readonly string _path;
+        private string _path;
 
-        public FirebaseRepository(string path, FirebaseQuery query)
+        public FirebaseRepository(string node, FirebaseQuery query)
         {
-            _path = path;
+            _node = node;
+            _path = node;
             _query = query;
         }
 
@@ -50,17 +52,18 @@ namespace FirebaseRepository
             return result;
         }
 
-        public async Task<T> PatchAsync(T entity, string key = null)
+        public async Task<string> PatchAsync(dynamic entity, string key = null)
         {
-            T result;
-            if (null != key) result = await _query.Child(_path).Child(key).PatchAsync(entity);
-            else result = await _query.Child(_path).PutAsync(entity);
+            string result;
+            if (null != key) result = await _query.Child(_path).Child(key).PatchAsync(JsonConvert.SerializeObject(entity));
+            else result = await _query.Child(_path).PatchAsync(JsonConvert.SerializeObject(entity));
             return result;
         }
 
-        public async Task DeleteAsync(string key)
+        public async Task DeleteAsync(string key = null)
         {
-            await _query.Child(_path).Child(key).DeleteAsync();
+            if (null != key) await _query.Child(_path).Child(key).DeleteAsync();
+            else await _query.Child(_path).DeleteAsync();
         }
 
         public async Task<IReadOnlyCollection<FirebaseObject<T>>> SearchByKeyValueAsync(string key, string value)
@@ -71,6 +74,12 @@ namespace FirebaseRepository
 
         public string GetPath()
         {
+            return _path;
+        }
+
+        public string SetPath(string path = null)
+        {
+            _path = null != path ? $"{_node}/{path}" : _node;
             return _path;
         }
     }
