@@ -35,7 +35,7 @@ namespace Monster.Tests.Mocks
                 {
                     Name = "Jane Porter",
                     Age = 32,
-                    Gender = "Male",
+                    Gender = "Female",
                     Nicknames = new List<string> {"Jane"}
                 }
             };
