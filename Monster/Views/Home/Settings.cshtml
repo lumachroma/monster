@@ -1,0 +1,12 @@
+﻿<h3>Settings</h3>
+
+<a class="btn btn-default" href="/Home/Dashboard">Dashboard</a>
+<a class="btn btn-default" href="/Account/Logoff">Logoff</a>
+
+<dl>
+    @foreach (var claim in Model)
+    {
+        <dt>@claim.Type</dt>
+        <dd>@claim.Value</dd>
+    }
+</dl>

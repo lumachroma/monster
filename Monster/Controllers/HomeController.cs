@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Security.Claims;
 using System.Web.Mvc;
 
 namespace Monster.Controllers
@@ -25,6 +22,22 @@ namespace Monster.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        [Authorize]
+        public ActionResult Dashboard()
+        {
+            ViewBag.Title = "Dashboard";
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Settings()
+        {
+            ViewBag.Title = "Settings";
+
+            return View((User as ClaimsPrincipal)?.Claims);
         }
     }
 }
