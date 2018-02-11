@@ -86,24 +86,6 @@ namespace Monster.Tests.FirebaseRepository
         }
 
         [Fact]
-        public async Task DeleteAsync()
-        {
-            var person = _fixture.PersonList.ElementAt(3);
-            var postResult = await _firebaseRepository.PostAsync(person);
-            Assert.NotNull(postResult);
-
-            var getResult = await _firebaseRepository.GetByKeyAsync(postResult.Key);
-            Assert.NotNull(getResult);
-            Assert.IsType<MockFirebasePerson>(getResult);
-            Assert.Equal(person.Name, getResult.Name);
-
-            await _firebaseRepository.DeleteAsync(postResult.Key);
-
-            getResult = await _firebaseRepository.GetByKeyAsync(postResult.Key);
-            Assert.Null(getResult);
-        }
-
-        [Fact]
         public async Task GetAllAsync()
         {
             var mocks = await CreateMocks();
@@ -204,6 +186,24 @@ namespace Monster.Tests.FirebaseRepository
             Assert.Equal("Johnathan Doe", getResult.Name);
             Assert.Equal("Rather not say", getResult.Gender);
             Assert.Equal(person.Age, getResult.Age);
+        }
+
+        [Fact]
+        public async Task DeleteAsync()
+        {
+            var person = _fixture.PersonList.ElementAt(3);
+            var postResult = await _firebaseRepository.PostAsync(person);
+            Assert.NotNull(postResult);
+
+            var getResult = await _firebaseRepository.GetByKeyAsync(postResult.Key);
+            Assert.NotNull(getResult);
+            Assert.IsType<MockFirebasePerson>(getResult);
+            Assert.Equal(person.Name, getResult.Name);
+
+            await _firebaseRepository.DeleteAsync(postResult.Key);
+
+            getResult = await _firebaseRepository.GetByKeyAsync(postResult.Key);
+            Assert.Null(getResult);
         }
 
         [Fact]
