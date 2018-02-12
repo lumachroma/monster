@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace FirebaseRepository
 {
-    public class FirebaseRepository<T> : IFirebaseRepository<T> where T : class, IFirebaseEntity, new()
+    public class FirebaseRepository<T> : IFirebaseRepository<T> where T : IFirebaseEntity
     {
         private readonly string _node;
         private readonly FirebaseQuery _query;
