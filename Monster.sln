@@ -4,14 +4,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monster", "Monster\Monster.csproj", "{330C2A52-ED6D-45B9-BF9A-8ACE89FC5953}"
+	ProjectSection(ProjectDependencies) = postProject
+		{07C16879-2C42-4208-ABD0-C3F82D61CFB1} = {07C16879-2C42-4208-ABD0-C3F82D61CFB1}
+		{75931FC9-E698-4ADC-AA83-220407AF2168} = {75931FC9-E698-4ADC-AA83-220407AF2168}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monster.Tests", "Monster.Tests\Monster.Tests.csproj", "{FB0140DC-CF25-40EA-AF45-D36B03D1149B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandbox", "Sandbox\Sandbox.csproj", "{0D53AA7D-CA72-4E32-BF76-E53552917C65}"
+	ProjectSection(ProjectDependencies) = postProject
+		{07C16879-2C42-4208-ABD0-C3F82D61CFB1} = {07C16879-2C42-4208-ABD0-C3F82D61CFB1}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseRest", "FirebaseRest\FirebaseRest.csproj", "{07C16879-2C42-4208-ABD0-C3F82D61CFB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirebaseRepository", "FirebaseRepository\FirebaseRepository.csproj", "{75931FC9-E698-4ADC-AA83-220407AF2168}"
+	ProjectSection(ProjectDependencies) = postProject
+		{07C16879-2C42-4208-ABD0-C3F82D61CFB1} = {07C16879-2C42-4208-ABD0-C3F82D61CFB1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
