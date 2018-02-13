@@ -66,7 +66,7 @@ namespace Monster.Controllers
 
                     identity.AddClaim(new Claim(ClaimTypes.Name, user.Username));
                     identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
-                    identity.AddClaim(new Claim(ClaimTypes.StateOrProvince, user.State));
+                    identity.AddClaim(new Claim(ClaimTypes.StateOrProvince, user.Location));
                     identity.AddClaim(new Claim(ClaimTypes.Country, user.Country));
 
                     var roles = new List<Claim>();

@@ -9,7 +9,7 @@ namespace Monster.Models
         public string Username { get; set; }
         public string Password { get; set; }
         public string Email { get; set; }
-        public string State { get; set; }
+        public string Location { get; set; }
         public string Country { get; set; }
         public List<string> Roles { get; set; } = new List<string>();
 
