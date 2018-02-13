@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "User Details";
+}
+
+<div>
+    <h2>
+        <i class="far fa-user"></i> @ViewBag.Title
+        <small>
+            <i class="fas fa-cog fa-spin" data-bind="visible: isBusy"></i>
+        </small>
+    </h2>
+    <hr/>
+    @Html.Partial("_DetailsText")
+    <a class="btn btn-default" href="/User/Edit/@ViewBag.Key">Edit</a>
+    <a class="btn btn-danger" href="/User/Remove/@ViewBag.Key">Remove</a>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+<script src="~/Scripts/KOScripts/KOShared.js"></script>
+<script src="~/Scripts/KOScripts/KOSchemas/KOUser.js"></script>
+<script src="~/Scripts/KOScripts/KODetails.js"></script>
+<script>
+    $(function() {
+        ko.applyBindings(modelView);
+        modelView.viewAll("User", "@ViewBag.Key");
+    });
+</script>

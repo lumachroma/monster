@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Users";
+}
+
+<div>
+    <h2>
+        <i class="far fa-user"></i> @ViewBag.Title
+        <small>
+            <i class="fas fa-cog fa-spin" data-bind="visible: isBusy"></i>
+        </small>
+    </h2>
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th>&nbsp;</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Location</th>
+                <th>Roles</th>
+                <th><a href="/User/Create" title="Add"><i class="fas fa-user-plus"></i></a></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: list">
+            <tr>
+                <th><span data-bind="text: $index() + 1"></span>.</th>
+                <td><span data-bind="text: Object.Username">username</span></td>
+                <td><span data-bind="text: Object.Email">email</span></td>
+                <td><span data-bind="text: Object.Location">location</span>, <span data-bind="text: Object.Country">country</span></td>
+                <td><span data-bind="text: Object.Roles">roles</span></td>
+                <td>
+                    <a data-bind="attr: { href: '/User/Details/' + Key }" title="Details/Edit/Delete">
+                        <i class="fas fa-user"></i>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/knockout-3.4.2.js"></script>
+<script src="~/Scripts/KOScripts/KOShared.js"></script>
+<script src="~/Scripts/KOScripts/KOAll.js"></script>
+<script>
+    $(function () {
+        ko.applyBindings(modelView);
+        modelView.viewAll("User");
+    });
+</script>
