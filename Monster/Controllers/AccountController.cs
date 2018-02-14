@@ -36,18 +36,19 @@ namespace Monster.Controllers
         }
 
         [HttpGet]
-        public ActionResult Login(bool success = true, string status = "OK")
+        public ActionResult Login(bool success = true, string status = "OK", string returnUrl = null)
         {
             ViewBag.Title = "Login";
 
             ViewBag.Success = success;
             ViewBag.Status = status;
+            ViewBag.ReturnUrl = returnUrl;
 
             return View();
         }
 
         [HttpPost]
-        public async Task<ActionResult> Login(LoginModel model, string returnUrl = "/")
+        public async Task<ActionResult> Login(LoginModel model, string returnUrl)
         {
             if (string.IsNullOrEmpty(model.Username))
                 return RedirectToAction("Login", "Account",
@@ -80,8 +81,8 @@ namespace Monster.Controllers
 
                     HttpContext.GetOwinContext().Authentication.SignIn(identity);
 
-                    if (returnUrl == "/") return RedirectToAction("Dashboard", "Home");
-                    return Redirect(returnUrl);
+                    if (Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
+                    return RedirectToAction("Dashboard", "Home");
                 }
             }
 

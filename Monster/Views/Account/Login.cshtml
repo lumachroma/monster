@@ -1,6 +1,6 @@
 ﻿<h3>Login</h3>
 <div>
-    <form class="form-inline" action="/Account/Login" method="post">
+    <form class="form-inline" action="/Account/Login?ReturnUrl=@ViewBag.ReturnUrl" method="post">
         <input class="form-control" type="text" placeholder="username" name="Username"/>
         <input class="form-control" type="password" placeholder="password" name="Password"/>
         <button class="btn btn-primary" type="submit">login</button>
