@@ -39,5 +39,13 @@ namespace Monster.Controllers
 
             return View((User as ClaimsPrincipal)?.Claims);
         }
+
+        public ActionResult Unauthorized()
+        {
+            ViewBag.Title = "401";
+            ViewBag.Message = "UNAUTHORIZED";
+
+            return View();
+        }
     }
 }

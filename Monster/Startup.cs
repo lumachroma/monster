@@ -1,6 +1,10 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 using Microsoft.Owin;
+using Microsoft.Owin.Cors;
 using Microsoft.Owin.Security.Cookies;
+using Microsoft.Owin.Security.OAuth;
+using Monster.Authorizations;
 using Owin;
 
 namespace Monster
@@ -22,6 +26,19 @@ namespace Monster
                 LoginPath = new PathString("/Account/Login"),
                 CookieName = $".{_applicationName}.Cookie"
             });
+
+            var provider = new MonsterOAuthAuthorizationServerProvider();
+            var options = new OAuthAuthorizationServerOptions
+            {
+                AllowInsecureHttp = true,
+                TokenEndpointPath = new PathString("/token"),
+                AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
+                Provider = provider
+            };
+            app.UseOAuthAuthorizationServer(options);
+
+            app.UseCors(CorsOptions.AllowAll);
+            app.UseOAuthBearerAuthentication(new OAuthBearerAuthenticationOptions());
         }
     }
 }

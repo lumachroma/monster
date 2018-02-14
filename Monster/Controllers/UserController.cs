@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using FirebaseRest;
 using FirebaseRest.Models;
+using Monster.Authorizations;
 using Monster.Firebase;
 using Monster.Models;
 
@@ -21,11 +22,13 @@ namespace Monster.Controllers
             _userContext = new FirebaseDataContext<User>("Users", firebaseQuery);
         }
 
+        [AuthorizeAttributeWebMvc]
         public ActionResult Index()
         {
             return View();
         }
 
+        [AuthorizeAttributeWebMvc]
         public ActionResult Details(string key)
         {
             if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -61,6 +64,7 @@ namespace Monster.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> All()
         {
@@ -70,6 +74,7 @@ namespace Monster.Controllers
             return Json(results, JsonRequestBehavior.AllowGet);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> Get(string key)
         {
