@@ -184,7 +184,7 @@ namespace Monster.Tests.FirebaseRepository
             var getResult = await _firebaseRepository.GetByKeyAsync(postResult.Key);
             Assert.NotNull(getResult);
             Assert.IsType<MockFirebasePerson>(getResult);
-            Assert.Equal(gender, getResult.Name);
+            Assert.Equal(name, getResult.Name);
             Assert.Equal(gender, getResult.Gender);
             Assert.Equal(person.Age, getResult.Age);
         }
