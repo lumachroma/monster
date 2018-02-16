@@ -13,8 +13,8 @@ namespace Monster.Tests.FirebaseRest
             _firebaseQuery = new FirebaseQuery(_firebaseClient);
         }
 
-        private const string FirebaseUrl = "https://lumachroma.firebaseio.com";
-        private const string FirebaseAuth = "x2yPyLti57aYEcKFJMHA4tMd97R7ML3jP6ZHiSs5";
+        private const string FirebaseUrl = "https://swag-monster.firebaseio.com";
+        private const string FirebaseAuth = "MfX7DaAWOUjr0zJ2invYbaX6UceHZ3vrif0VGeL4";
         private readonly FirebaseClient _firebaseClient;
         private readonly FirebaseQuery _firebaseQuery;
 

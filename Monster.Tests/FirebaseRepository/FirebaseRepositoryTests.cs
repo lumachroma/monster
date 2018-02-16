@@ -25,8 +25,8 @@ namespace Monster.Tests.FirebaseRepository
             RemoveMocks();
         }
 
-        private const string FirebaseUrl = "https://lumachroma.firebaseio.com";
-        private const string FirebaseAuth = "x2yPyLti57aYEcKFJMHA4tMd97R7ML3jP6ZHiSs5";
+        private const string FirebaseUrl = "https://swag-monster.firebaseio.com";
+        private const string FirebaseAuth = "MfX7DaAWOUjr0zJ2invYbaX6UceHZ3vrif0VGeL4";
         private const string FirebaseMockNode = "FirebaseRestUnitTest";
         private readonly FirebaseRepository<MockFirebasePerson> _firebaseRepository;
         private readonly MockFirebaseFixture _fixture;
