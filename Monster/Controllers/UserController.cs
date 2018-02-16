@@ -89,6 +89,12 @@ namespace Monster.Controllers
         [HttpPost]
         public async Task<ActionResult> Post(User user)
         {
+            var usernameExist = await _userContext.SearchByKeyValueAsync("\"Username\"", $"\"{user.Username}\"");
+            if (usernameExist.Any()) return this.BadRequest($"{user.Username} already exist!");
+
+            var emailExist = await _userContext.SearchByKeyValueAsync("\"Email\"", $"\"{user.Email}\"");
+            if (emailExist.Any()) return this.BadRequest($"{user.Email} already exist!");
+
             var hash = Crypto.HashPassword(user.Password);
             user.Password = hash;
             var result = await _userContext.PostAsync(user);
@@ -99,6 +105,9 @@ namespace Monster.Controllers
         [HttpPut]
         public async Task<ActionResult> Put(string key, User user)
         {
+            var emailExist = await _userContext.SearchByKeyValueAsync("\"Email\"", $"\"{user.Email}\"");
+            if (emailExist.Any()) return this.BadRequest($"{user.Email} already exist!");
+
             var result = await _userContext.PutAsync(user, key);
             return null != result ? this.Ok(new FirebaseObject<User>(key, user)) : this.InternalServerError(new { });
         }
