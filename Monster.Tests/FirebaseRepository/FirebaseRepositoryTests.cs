@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Threading.Tasks;
 using FirebaseRepository;
 using FirebaseRest;
 using FirebaseRest.Models;
 using Monster.Tests.Mocks;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace Monster.Tests.FirebaseRepository
@@ -172,19 +172,20 @@ namespace Monster.Tests.FirebaseRepository
             var postResult = await _firebaseRepository.PostAsync(person);
             Assert.NotNull(postResult);
 
-            const string json = @"{
-              'Name': 'Johnathan Doe',
-              'Gender': 'Rather not say'
-            }";
-            var dynamicPerson = JsonConvert.DeserializeObject(json);
+            const string name = "Johnathan Doe";
+            const string gender = "Rather not say";
+            dynamic dynamicPerson = new ExpandoObject();
+            dynamicPerson.Name = name;
+            dynamicPerson.Gender = gender;
+
             var patchResult = await _firebaseRepository.PatchAsync(dynamicPerson, postResult.Key);
             Assert.NotNull(patchResult);
 
             var getResult = await _firebaseRepository.GetByKeyAsync(postResult.Key);
             Assert.NotNull(getResult);
             Assert.IsType<MockFirebasePerson>(getResult);
-            Assert.Equal("Johnathan Doe", getResult.Name);
-            Assert.Equal("Rather not say", getResult.Gender);
+            Assert.Equal(gender, getResult.Name);
+            Assert.Equal(gender, getResult.Gender);
             Assert.Equal(person.Age, getResult.Age);
         }
 
