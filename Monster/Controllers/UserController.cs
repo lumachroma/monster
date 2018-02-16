@@ -108,6 +108,11 @@ namespace Monster.Controllers
             var emailExist = await _userContext.SearchByKeyValueAsync("\"Email\"", $"\"{user.Email}\"");
             if (emailExist.Any()) return this.BadRequest($"{user.Email} already exist!");
 
+            var existing = await _userContext.GetByKeyAsync(key);
+            if (null == existing) return this.NotFound($"{key} not found!");
+
+            user.Username = existing.Username;
+            user.Password = existing.Password;
             var result = await _userContext.PutAsync(user, key);
             return null != result ? this.Ok(new FirebaseObject<User>(key, user)) : this.InternalServerError(new { });
         }
