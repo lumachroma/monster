@@ -114,5 +114,30 @@ namespace Monster.Firebase
                 entity.CreatedBy = existing.CreatedBy;
             }
         }
+
+        private static void InitNewEntity(dynamic entity)
+        {
+            var now = DateTime.Now;
+            var who = HttpContext.Current.User.Identity.Name;
+            entity.Id = Guid.NewGuid().ToString();
+            entity.CreatedDate = now;
+            entity.CreatedBy = who;
+            entity.ChangedDate = now;
+            entity.ChangedBy = who;
+        }
+
+        private async Task InitExistingEntity(dynamic entity, string key = null)
+        {
+            T existing;
+            if (null != key) existing = await GetByKeyAsync(key);
+            else existing = await GetSingleAysnc();
+            InitNewEntity(entity);
+            if (null != existing)
+            {
+                entity.Id = existing.Id;
+                entity.CreatedDate = existing.CreatedDate;
+                entity.CreatedBy = existing.CreatedBy;
+            }
+        }
     }
 }
