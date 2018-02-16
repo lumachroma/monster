@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using FirebaseRest;
 using FirebaseRest.Models;
@@ -61,7 +62,7 @@ namespace Monster.Controllers
             if (users.Any())
             {
                 var user = users.First().Object;
-                if (model.Password == user.Password) //TODO: refactor
+                if (Crypto.VerifyHashedPassword(user.Password, model.Password))
                 {
                     var identity = new ClaimsIdentity($"{_applicationName}Cookie");
 

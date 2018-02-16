@@ -3,6 +3,7 @@ using System.Configuration;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using FirebaseRest;
 using FirebaseRest.Models;
 using Microsoft.Owin.Security.OAuth;
@@ -37,7 +38,7 @@ namespace Monster.Authorizations
             if (users.Any())
             {
                 var user = users.First().Object;
-                if (context.Password == user.Password) //TODO: refactor
+                if (Crypto.VerifyHashedPassword(user.Password, context.Password))
                 {
                     var identity = new ClaimsIdentity(context.Options.AuthenticationType);
 
