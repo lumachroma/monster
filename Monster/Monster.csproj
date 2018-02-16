@@ -168,6 +168,7 @@
     <Compile Include="Authorizations\AuthorizeAttributeWebMvc.cs" />
     <Compile Include="Authorizations\AuthorizeAttributeWebHttp.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Extensions\ControllerExtension.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Models\User.cs" />
@@ -207,6 +208,7 @@
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\KOScripts\KODetails.js" />
+    <Content Include="Scripts\KOScripts\KOPassword.js" />
     <Content Include="Scripts\KOScripts\KOSchemas\KOUser.js" />
     <Content Include="Scripts\KOScripts\KOShared.js" />
     <Content Include="Scripts\KOScripts\KOAll.js" />
@@ -238,6 +240,7 @@
     <Content Include="Views\User\_DetailsValue.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\Home\Unauthorized.cshtml" />
+    <Content Include="Views\User\Password.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
