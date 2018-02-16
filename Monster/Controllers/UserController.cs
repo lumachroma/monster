@@ -1,10 +1,13 @@
 ﻿using System.Configuration;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using FirebaseRest;
 using FirebaseRest.Models;
 using Monster.Authorizations;
+using Monster.Extensions;
 using Monster.Firebase;
 using Monster.Models;
 
@@ -69,9 +72,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> All()
         {
             var results = await _userContext.GetAllAsync();
-
-            Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(results, JsonRequestBehavior.AllowGet);
+            return this.Ok(results, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
@@ -79,12 +80,9 @@ namespace Monster.Controllers
         public async Task<ActionResult> Get(string key)
         {
             var result = await _userContext.GetByKeyAsync(key);
-
-            if (null != result)
-                Response.StatusCode = (int)HttpStatusCode.OK;
-            else
-                Response.StatusCode = (int)HttpStatusCode.NotFound;
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return null != result
+                ? this.Ok(result, JsonRequestBehavior.AllowGet)
+                : this.NotFound(new { }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
@@ -92,12 +90,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Post(User user)
         {
             var result = await _userContext.PostAsync(user);
-
-            if (null != result)
-                Response.StatusCode = (int)HttpStatusCode.OK;
-            else
-                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            return Json(result);
+            return null != result ? this.Ok(result) : this.InternalServerError(new { });
         }
 
         [Authorize]
@@ -105,12 +98,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Put(string key, User user)
         {
             var result = await _userContext.PutAsync(user, key);
-
-            if (null != result)
-                Response.StatusCode = (int)HttpStatusCode.OK;
-            else
-                Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-            return Json(new FirebaseObject<User>(key, user));
+            return null != result ? this.Ok(new FirebaseObject<User>(key, user)) : this.InternalServerError(new { });
         }
 
         [Authorize]
@@ -118,8 +106,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Delete(string key, User user)
         {
             await _userContext.DeleteAsync(key);
-            Response.StatusCode = (int)HttpStatusCode.OK;
-            return Json(new FirebaseObject<User>(key, user));
+            return this.Ok(new FirebaseObject<User>(key, user));
         }
     }
 }
