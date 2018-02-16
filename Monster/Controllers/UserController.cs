@@ -89,6 +89,8 @@ namespace Monster.Controllers
         [HttpPost]
         public async Task<ActionResult> Post(User user)
         {
+            var hash = Crypto.HashPassword(user.Password);
+            user.Password = hash;
             var result = await _userContext.PostAsync(user);
             return null != result ? this.Ok(result) : this.InternalServerError(new { });
         }
