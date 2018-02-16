@@ -8,7 +8,7 @@ namespace Sandbox
         {
             try
             {
-                //FirebaseRest.RunAsync().Wait();
+                FirebaseRest.RunAsync().Wait();
                 FirebaseRepository.RunAsync().Wait();
                 Console.WriteLine("Done ......");
                 Console.ReadLine();
