@@ -9,10 +9,11 @@
             <i class="fas fa-cog fa-spin" data-bind="visible: isBusy"></i>
         </small>
     </h2>
-    <hr/>
+    <hr />
     @Html.Partial("_DetailsText")
     <a class="btn btn-default" href="/User/Edit/@ViewBag.Key">Edit</a>
-    <a class="btn btn-danger" href="/User/Remove/@ViewBag.Key">Remove</a>
+    <a class="btn btn-default" href="/User/Remove/@ViewBag.Key">Remove</a>
+    <a class="btn btn-default" href="/User">Cancel</a>
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/knockout-3.4.2.js"></script>
@@ -22,6 +23,6 @@
 <script>
     $(function() {
         ko.applyBindings(modelView);
-        modelView.viewAll("User", "@ViewBag.Key");
+        modelView.viewDetails("User", "@ViewBag.Title", "@ViewBag.Key");
     });
 </script>

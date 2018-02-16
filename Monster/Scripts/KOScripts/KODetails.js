@@ -1,11 +1,13 @@
 ﻿var modelView = {
     model: undefined,
+    action: "Action",
     id: undefined,
     isBusy: ko.observable(false),
     entity: ko.observable(),
-    viewAll: function (model, id = null) {
+    viewDetails: function (model, action, id = null) {
         var thisObj = this;
         thisObj.model = model;
+        thisObj.action = action.toLowerCase();
         thisObj.id = id;
         var koModel = `Ko${model}`;
         if (null != id) {
@@ -71,7 +73,14 @@
             }).fail(function (e) {
                 console.log(e.status);
                 console.log(e.statusText);
+                console.log(e.responseText);
                 thisObj.isBusy(false);
+                //app.showMessage(failMessage, config.application_name, ["OK"])
+                //    .done(function (result) {
+                //        if (result == "OK") {
+                window.location.href = redirect;
+                //        }
+                //    });
             });
     }
 };

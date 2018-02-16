@@ -9,9 +9,10 @@
             <i class="fas fa-cog fa-spin" data-bind="visible: isBusy"></i>
         </small>
     </h2>
-    <hr/>
+    <hr />
     @Html.Partial("_DetailsValue")
     <button class="btn btn-default" data-bind="click: createEntity">Create</button>
+    <a class="btn btn-default" href="/User">Cancel</a>
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/knockout-3.4.2.js"></script>
@@ -21,6 +22,6 @@
 <script>
     $(function() {
         ko.applyBindings(modelView);
-        modelView.viewAll("User");
+        modelView.viewDetails("User", "@ViewBag.Title");
     });
 </script>
