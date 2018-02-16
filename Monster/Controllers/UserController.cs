@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ using Monster.Authorizations;
 using Monster.Extensions;
 using Monster.Firebase;
 using Monster.Models;
+using Newtonsoft.Json;
 
 namespace Monster.Controllers
 {
@@ -59,6 +61,16 @@ namespace Monster.Controllers
 
         [Authorize]
         public ActionResult Remove(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            ViewBag.Key = key;
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Password(string key)
         {
             if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
@@ -123,6 +135,20 @@ namespace Monster.Controllers
         {
             await _userContext.DeleteAsync(key);
             return this.Ok(new FirebaseObject<User>(key, user));
+        }
+
+        [Authorize]
+        [HttpPatch]
+        public async Task<ActionResult> SetPassword(string key, string password)
+        {
+            var initial = await _userContext.GetByKeyAsync(key);
+            if (null == initial) return this.NotFound($"{key} not found!");
+
+            dynamic user = new ExpandoObject();
+            user.Password = Crypto.Hash(password);
+            var result = await _userContext.PatchAsync(user, key);
+            string json = JsonConvert.SerializeObject(result);
+            return null != result ? this.Ok(json) : this.InternalServerError(string.Empty);
         }
     }
 }
