@@ -1,4 +1,10 @@
-﻿<h3>Dashboard</h3>
-
-<a class="btn btn-default" href="/Home/Settings">Settings</a>
-<a class="btn btn-default" href="/Account/Logoff">Logoff</a>
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
+<h1 class="display-4">@ViewBag.Title</h1>
+<p class="lead">@ViewBag.Message</p>
+<div class="btn-group" role="group" aria-label="Controls">
+    <a class="btn btn-light" href="/Home/Settings" title="Settings"><i class="fas fa-wrench fa-fw"></i></a>
+    <a class="btn btn-light" href="/User" title="User"><i class="fas fa-user fa-fw"></i></a>
+</div>
+<a class="btn btn-light" href="/Account/Logoff">Logoff</a>

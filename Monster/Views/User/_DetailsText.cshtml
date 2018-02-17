@@ -1,32 +1,32 @@
-﻿<form class="form-horizontal" data-bind="with: entity" id="user-details-text-form">
-    <div class="form-group">
-        <label class="col-md-2 control-label">Username</label>
+﻿<form data-bind="with: entity" id="user-details-text-form">
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Username</label>
         <div class="col-md-6">
-            <p class="form-control-static" data-bind="text: Username"></p>
+            <input type="text" readonly class="form-control-plaintext" data-bind="value: Username" />
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">Email</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Email</label>
         <div class="col-md-6">
-            <p class="form-control-static" data-bind="text: Email"></p>
+            <input type="text" readonly class="form-control-plaintext" data-bind="value: Email" />
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">Location</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Location</label>
         <div class="col-md-6">
-            <p class="form-control-static" data-bind="text: Location"></p>
+            <input type="text" readonly class="form-control-plaintext" data-bind="value: Location" />
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">Country</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Country</label>
         <div class="col-md-6">
-            <p class="form-control-static" data-bind="text: Country"></p>
+            <input type="text" readonly class="form-control-plaintext" data-bind="value: Country" />
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">Roles</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Roles</label>
         <div class="col-md-6">
-            <p class="form-control-static" data-bind="text: Roles"></p>
+            <input type="text" readonly class="form-control-plaintext" data-bind="value: Roles" />
         </div>
     </div>
 </form>

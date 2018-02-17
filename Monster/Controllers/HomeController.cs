@@ -27,7 +27,7 @@ namespace Monster.Controllers
         [Authorize]
         public ActionResult Dashboard()
         {
-            ViewBag.Title = "Dashboard";
+            ViewBag.Message = "The dashboard page.";
 
             return View();
         }
@@ -35,15 +35,14 @@ namespace Monster.Controllers
         [Authorize]
         public ActionResult Settings()
         {
-            ViewBag.Title = "Settings";
+            ViewBag.Message = "The settings page.";
 
             return View((User as ClaimsPrincipal)?.Claims);
         }
 
         public ActionResult Unauthorized()
         {
-            ViewBag.Title = "401";
-            ViewBag.Message = "UNAUTHORIZED";
+            ViewBag.Message = "Unauthorized";
 
             return View();
         }

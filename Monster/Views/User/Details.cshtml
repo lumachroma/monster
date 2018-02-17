@@ -1,20 +1,23 @@
 ﻿@{
     ViewBag.Title = "User Details";
 }
-
-<div>
-    <h2>
-        <i class="far fa-user"></i> @ViewBag.Title
-        <small>
-            <i class="fas fa-cog fa-spin" data-bind="visible: isBusy"></i>
+<div class="mb-2">
+    <h4 class="display-4">
+        @ViewBag.Title
+        <small class="text-secondary">
+            <i class="fas fa-spinner fa-pulse fa-xs" data-bind="visible: isBusy"></i>
         </small>
-    </h2>
+    </h4>
+</div>
+<div class="mb-2">
     <hr />
     @Html.Partial("_DetailsText")
-    <a class="btn btn-default" href="/User/Edit/@ViewBag.Key">Edit</a>
-    <a class="btn btn-default" href="/User/Password/@ViewBag.Key">Set Password</a>
-    <a class="btn btn-default" href="/User/Remove/@ViewBag.Key">Remove</a>
-    <a class="btn btn-default" href="/User">Cancel</a>
+    <div class="btn-group" role="group" aria-label="Controls">
+        <a class="btn btn-light" href="/User/Edit/@ViewBag.Key" title="Edit"><i class="fas fa-edit fa-fw"></i></a>
+        <a class="btn btn-light" href="/User/Password/@ViewBag.Key" title="Set Password"><i class="fas fa-key fa-fw"></i></a>
+        <a class="btn btn-light" href="/User/Remove/@ViewBag.Key" title="Delete"><i class="fas fa-eraser fa-fw"></i></a>
+    </div>
+    <a class="btn btn-light" href="/User">Cancel</a>
 </div>
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/knockout-3.4.2.js"></script>
@@ -22,8 +25,8 @@
 <script src="~/Scripts/KOScripts/KOSchemas/KOUser.js"></script>
 <script src="~/Scripts/KOScripts/KODetails.js"></script>
 <script>
-    $(function() {
-        ko.applyBindings(modelView);
-        modelView.viewDetails("User", "@ViewBag.Title", "@ViewBag.Key");
-    });
+        $(function() {
+            ko.applyBindings(modelView);
+            modelView.viewDetails("User", "@ViewBag.Title", "@ViewBag.Key");
+        });
 </script>

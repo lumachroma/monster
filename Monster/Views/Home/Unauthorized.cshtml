@@ -1,5 +1,7 @@
-﻿<h2>@ViewBag.Title</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>The request has not been applied because it lacks valid authentication credentials for the target resource.</p>
-<a class="btn btn-default" href="/Account/Login">Login</a>
+﻿@{
+    ViewBag.Title = "401";
+}
+<h1 class="display-4">@ViewBag.Title</h1>
+<p class="lead">@ViewBag.Message</p>
+<p class="lead">The request has not been applied because it lacks valid authentication credentials for the target resource.</p>
+<a class="btn btn-light" href="/Account/Login">Login</a>

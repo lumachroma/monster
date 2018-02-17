@@ -1,67 +1,67 @@
 ﻿<form class="form-horizontal" data-bind="with: entity" id="user-details-value-form">
     <!--ko if: $root.action === 'create user'-->
-    <div class="form-group">
-        <label class="col-md-2 control-label">Username</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Username</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" data-bind="value: Username" />
+            <input type="text" class="form-control form-control-sm" data-bind="value: Username" />
         </div>
     </div>
     <!--/ko-->
     <!--ko if: $root.action === 'edit user'-->
-    <div class="form-group">
-        <label class="col-md-2 control-label">Username</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Username</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" data-bind="value: Username" disabled="disabled" />
+            <input type="text" class="form-control form-control-sm" data-bind="value: Username" disabled="disabled" />
         </div>
     </div>
     <!--/ko-->
     <!--ko if: $root.action === 'create user'-->
-    <div class="form-group">
-        <label class="col-md-2 control-label">Password</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Password</label>
         <div class="col-md-6">
-            <input type="password" class="form-control" data-bind="value: Password" />
+            <input type="password" class="form-control form-control-sm" data-bind="value: Password" />
         </div>
     </div>
     <!--/ko-->
     <!--ko if: $root.action === 'edit user'-->
-    <div class="form-group">
-        <label class="col-md-2 control-label">Password</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Password</label>
         <div class="col-md-6">
-            <input type="password" class="form-control" data-bind="value: Password" disabled="disabled" />
+            <input type="password" class="form-control form-control-sm" data-bind="value: Password" disabled="disabled" />
         </div>
     </div>
     <!--/ko-->
-    <div class="form-group">
-        <label class="col-md-2 control-label">Email</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Email</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" data-bind="value: Email" />
+            <input type="text" class="form-control form-control-sm" data-bind="value: Email" />
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">Location</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Location</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" data-bind="value: Location" />
+            <input type="text" class="form-control form-control-sm" data-bind="value: Location" />
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">Country</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Country</label>
         <div class="col-md-6">
-            <input type="text" class="form-control" data-bind="value: Country" />
+            <input type="text" class="form-control form-control-sm" data-bind="value: Country" />
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">Roles</label>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label">Roles</label>
         <div class="col-md-6">
             <div class="input-group">
-                <input type="text" class="form-control" placeholder="Role" id="user-details-value-form-roles-input" />
-                <span class="input-group-btn">
-                    <button class="btn btn-default" data-bind="click: addChildItem(Roles, document.getElementById('user-details-value-form-roles-input').value)">Add</button>
-                </span>
+                <input type="text" class="form-control form-control-sm" placeholder="Role" id="user-details-value-form-roles-input" />
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-light" data-bind="click: addChildItem(Roles, document.getElementById('user-details-value-form-roles-input').value)">Add</button>
+                </div>
             </div>
             <ul class="list-inline" data-bind="foreach: Roles">
-                <li>
-                    <span data-bind="text: $data"></span>
-                    <a class="btn btn-link" data-bind="click: $parent.removeChildItem($parent.Roles, $data)">
+                <li class="list-inline-item">
+                    <span class="badge badge-light" data-bind="text: $data"></span>
+                    <a class="btn btn-link btn-sm" data-bind="click: $parent.removeChildItem($parent.Roles, $data)">
                         <i class="far fa-trash-alt"></i>
                     </a>
                 </li>

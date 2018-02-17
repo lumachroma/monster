@@ -1,8 +1,8 @@
-﻿<h3>Settings</h3>
-
-<a class="btn btn-default" href="/Home/Dashboard">Dashboard</a>
-<a class="btn btn-default" href="/Account/Logoff">Logoff</a>
-
+﻿@{
+    ViewBag.Title = "Settings";
+}
+<h1 class="display-4">@ViewBag.Title</h1>
+<p class="lead">@ViewBag.Message</p>
 <dl>
     @foreach (var claim in Model)
     {

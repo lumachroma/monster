@@ -3,41 +3,55 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Monster</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/">Monster</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home/Contact">Contact</a>
+                    </li>
                 </ul>
+                <span class="navbar-text">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a class="btn btn-outline-secondary btn-sm" href="/Account/Login" title="Login"><i class="fas fa-sign-in-alt fa-fw"></i></a>
+                    }
+                    else
+                    {
+
+                        <a class="btn btn-outline-secondary btn-sm" href="/Home/Dashboard" title="Dashboard"><i class="fas fa-gamepad fa-fw"></i></a>
+                        <a class="btn btn-outline-secondary btn-sm" href="/Account/Logoff" title="Logoff"><i class="fas fa-sign-out-alt fa-fw"></i></a>
+
+                    }
+                </span>
             </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
+        </nav>
+        <main role="main">
+            @RenderBody()
+        </main>
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Monster</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @RenderSection("scripts", false)
 </body>
 </html>
