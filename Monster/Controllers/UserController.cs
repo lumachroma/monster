@@ -92,9 +92,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Get(string key)
         {
             var result = await _userContext.GetByKeyAsync(key);
-            return null != result
-                ? this.Ok(result, JsonRequestBehavior.AllowGet)
-                : this.NotFound(new { }, JsonRequestBehavior.AllowGet);
+            return null != result ? this.Ok(result, JsonRequestBehavior.AllowGet) : this.NotFound(new { }, JsonRequestBehavior.AllowGet);
         }
 
         [Authorize]
@@ -117,11 +115,14 @@ namespace Monster.Controllers
         [HttpPut]
         public async Task<ActionResult> Put(string key, User user)
         {
-            var emailExist = await _userContext.SearchByKeyValueAsync("\"Email\"", $"\"{user.Email}\"");
-            if (emailExist.Any()) return this.BadRequest($"{user.Email} already exist!");
-
             var existing = await _userContext.GetByKeyAsync(key);
             if (null == existing) return this.NotFound($"{key} not found!");
+
+            if (user.Email != existing.Email)
+            {
+                var emailExist = await _userContext.SearchByKeyValueAsync("\"Email\"", $"\"{user.Email}\"");
+                if (emailExist.Any()) return this.BadRequest($"{user.Email} already exist!");
+            }
 
             user.Username = existing.Username;
             user.Password = existing.Password;
@@ -145,7 +146,7 @@ namespace Monster.Controllers
             if (null == initial) return this.NotFound($"{key} not found!");
 
             dynamic user = new ExpandoObject();
-            user.Password = Crypto.Hash(password);
+            user.Password = Crypto.HashPassword(password);
             var result = await _userContext.PatchAsync(user, key);
             string json = JsonConvert.SerializeObject(result);
             return null != result ? this.Ok(json) : this.InternalServerError(string.Empty);
