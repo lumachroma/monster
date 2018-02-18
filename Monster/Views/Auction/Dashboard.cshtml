@@ -1,0 +1,60 @@
+﻿@model FirebaseRest.Models.FirebaseObject<Monster.Models.User>
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="mb-2">
+    <h4 class="display-4">@ViewBag.Title</h4>
+    <p class="lead">@ViewBag.Message</p>
+</div>
+<hr />
+<div class="mb-2">
+    <div class="row">
+        <div class="col-md-4 mb-2">
+            <h4>User Details</h4>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <label class="col-12">Username</label>
+                    <span class="col-12">@Model.Object.Username</span>
+                </li>
+                <li class="list-group-item">
+                    <label class="col-12">Email</label>
+                    <span class="col-12">@Model.Object.Email</span>
+                </li>
+                <li class="list-group-item">
+                    <label class="col-12">Location</label>
+                    <span class="col-12">@Model.Object.Location, @Model.Object.Country</span>
+                </li>
+                <li class="list-group-item">
+                    <div class="float-right">
+                        <a class="btn btn-light" href="/Auction/Roles">Roles</a>
+                        <a class="btn btn-light" href="/Auction/Bio/@Model.Key">Edit</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-8 mb-2">
+            <div class="row mb-4">
+                <div class="col">
+                    <h4>Coming Auctions</h4>
+                    <div class="card">
+                        <div class="card-body">
+                            This is some text within a card body.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col">
+                    <h4>Past Auctions</h4>
+                    <div class="card">
+                        <div class="card-body">
+                            This is some text within a card body.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

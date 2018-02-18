@@ -61,11 +61,13 @@ namespace Monster.Controllers
             var users = await _userModelContext.SearchByKeyValueAsync("\"Username\"", $"\"{model.Username}\"");
             if (users.Any())
             {
+                var key = users.First().Key;
                 var user = users.First().Object;
                 if (Crypto.VerifyHashedPassword(user.Password, model.Password))
                 {
                     var identity = new ClaimsIdentity($"{_applicationName}Cookie");
 
+                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, key));
                     identity.AddClaim(new Claim(ClaimTypes.Name, user.Username));
                     identity.AddClaim(new Claim(ClaimTypes.Email, user.Email));
                     identity.AddClaim(new Claim(ClaimTypes.StateOrProvince, user.Location));
@@ -83,7 +85,7 @@ namespace Monster.Controllers
                     HttpContext.GetOwinContext().Authentication.SignIn(identity);
 
                     if (Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
-                    return RedirectToAction("Dashboard", "Home");
+                    return RedirectToAction("Dashboard", "Auction");
                 }
             }
 
