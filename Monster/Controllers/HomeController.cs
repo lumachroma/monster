@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace Monster.Controllers
 {
@@ -22,22 +21,6 @@ namespace Monster.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-
-        [Authorize]
-        public ActionResult Dashboard()
-        {
-            ViewBag.Message = "The dashboard page.";
-
-            return View();
-        }
-
-        [Authorize]
-        public ActionResult Settings()
-        {
-            ViewBag.Message = "The settings page.";
-
-            return View((User as ClaimsPrincipal)?.Claims);
         }
 
         public ActionResult Unauthorized()
