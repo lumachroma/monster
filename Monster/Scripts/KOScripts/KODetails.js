@@ -32,6 +32,7 @@
                 }).fail(function (e) {
                     console.log(e.status);
                     console.log(e.statusText);
+                    console.log(e.responseText);
                     thisObj.isBusy(false);
                     window.location.href = redirectUrl;
                 });

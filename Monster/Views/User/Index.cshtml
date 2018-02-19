@@ -29,16 +29,10 @@
             <tbody data-bind="foreach: list">
                 <tr>
                     <th><span data-bind="text: $index() + 1"></span>.</th>
-                    <td>
-                        <span data-bind="text: Object.Username"></span>
-                    </td>
-                    <td>
-                        <span data-bind="text: Object.Email"></span>
-                    </td>
+                    <td><span data-bind="text: Object.Username"></span></td>
+                    <td><span data-bind="text: Object.Email"></span></td>
                     <td><span data-bind="text: Object.Location"></span>,<span data-bind="text: Object.Country"></span></td>
-                    <td>
-                        <span data-bind="text: Object.Roles"></span>
-                    </td>
+                    <td><span data-bind="text: Object.Roles"></span></td>
                     <td>
                         <a class="text-secondary" data-bind="attr: { href: '/User/Details/' + Key }" title="Details"><i class="fas fa-user fa-fw fa-xs"></i></a>
                         <a class="text-secondary" data-bind="attr: { href: '/User/Edit/' + Key }" title="Edit"><i class="fas fa-edit fa-fw fa-xs"></i></a>
