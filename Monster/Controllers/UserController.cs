@@ -84,7 +84,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> All()
         {
             var results = await _userContext.GetAllAsync();
-            return this.Ok(results, JsonRequestBehavior.AllowGet);
+            return this.Ok(JsonConvert.SerializeObject(results));
         }
 
         [Authorize]
@@ -92,7 +92,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Get(string key)
         {
             var result = await _userContext.GetByKeyAsync(key);
-            return null != result ? this.Ok(result, JsonRequestBehavior.AllowGet) : this.NotFound(new { }, JsonRequestBehavior.AllowGet);
+            return null != result ? this.Ok(JsonConvert.SerializeObject(result)) : this.NotFound($"{key} not found!");
         }
 
         [Authorize]
@@ -108,7 +108,9 @@ namespace Monster.Controllers
             var hash = Crypto.HashPassword(user.Password);
             user.Password = hash;
             var result = await _userContext.PostAsync(user);
-            return null != result ? this.Ok(result) : this.InternalServerError(new { });
+            return null != result
+                ? this.Ok(JsonConvert.SerializeObject(result))
+                : this.InternalServerError(string.Empty);
         }
 
         [Authorize]
@@ -127,7 +129,9 @@ namespace Monster.Controllers
             user.Username = existing.Username;
             user.Password = existing.Password;
             var result = await _userContext.PutAsync(user, key);
-            return null != result ? this.Ok(new FirebaseObject<User>(key, user)) : this.InternalServerError(new { });
+            return null != result
+                ? this.Ok(JsonConvert.SerializeObject(new FirebaseObject<User>(key, user)))
+                : this.InternalServerError(string.Empty);
         }
 
         [Authorize]
@@ -135,7 +139,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Delete(string key, User user)
         {
             await _userContext.DeleteAsync(key);
-            return this.Ok(new FirebaseObject<User>(key, user));
+            return this.Ok(JsonConvert.SerializeObject(new FirebaseObject<User>(key, user)));
         }
 
         [Authorize]
