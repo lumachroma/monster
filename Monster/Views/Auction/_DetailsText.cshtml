@@ -1,0 +1,110 @@
+﻿<form class="form-horizontal" data-bind="with: entity" id="auction-details-text-form">
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Title</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: Title" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Status</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: Status" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Name</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: ProductName" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Image Url</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: ProductImageUrl" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Url</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: ProductUrl" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Description</label>
+        <div class="col-md-6">
+            <span data-bind="html: ProductDescription"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Price</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: ProductPrice" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Amount</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: Amount" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Step</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: Step" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Interval</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: Interval" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Start Date Time</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: moment(StartDateTime()).format('YYYY-MM-DD hh:mm A')" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Stop Date Time</label>
+        <div class="col-md-6">
+            <input type="text" readonly class="form-control-plaintext form-control-sm" data-bind="value: moment(StopDateTime()).format('YYYY-MM-DD hh:mm A')" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Bidders</label>
+        <div class="col-md-10">
+            <div data-bind="foreach: Bidders">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" readonly class="form-control-plaintext form-control-sm" placeholder="Nickname" data-bind="value: Nickname" />
+                    </div>
+                    <div class="col">
+                        <input type="text" readonly class="form-control-plaintext form-control-sm" placeholder="Email" data-bind="value: Email" />
+                    </div>
+                    <div class="col">
+                        <input type="text" readonly class="form-control-plaintext form-control-sm" placeholder="Code" data-bind="value: Code" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Logs</label>
+        <div class="col-md-10">
+            <div data-bind="foreach: Logs">
+                <div class="row">
+                    <div class="col">
+                        <input type="text" readonly class="form-control-plaintext form-control-sm" placeholder="Nickname" data-bind="value: Nickname" />
+                    </div>
+                    <div class="col">
+                        <input type="text" readonly class="form-control-plaintext form-control-sm" placeholder="Email" data-bind="value: Email" />
+                    </div>
+                    <div class="col">
+                        <input type="text" readonly class="form-control-plaintext form-control-sm" placeholder="Text" data-bind="value: Text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,122 @@
+﻿<form class="form-horizontal" data-bind="with: entity" id="auction-details-value-form">
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Title</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: Title" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Status</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: Status" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Name</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: ProductName" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Image Url</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: ProductImageUrl" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Url</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: ProductUrl" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Description</label>
+        <div class="col-md-6">
+            <textarea class="form-control form-control-sm" data-bind="value: ProductDescription"></textarea>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Product Price</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: ProductPrice" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Amount</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: Amount" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Step</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: Step" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Interval</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: Interval" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Start Date Time</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: StartDateTime" id="start-date-time" style="width: 100%;" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Stop Date Time</label>
+        <div class="col-md-6">
+            <input type="text" class="form-control form-control-sm" data-bind="value: StopDateTime" id="stop-date-time" style="width: 100%;" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Bidders</label>
+        <div class="col-md-10">
+            <div data-bind="foreach: Bidders">
+                <div class="row mb-2">
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" placeholder="Nickname" data-bind="value: Nickname" />
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" placeholder="Email" data-bind="value: Email" />
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" placeholder="Code" data-bind="value: Code" />
+                    </div>
+                    <div class="col-1">
+                        <a class="btn btn-link btn-sm" data-bind="click: $parent.removeChildItem($parent.Bidders, $data)">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-light btn-sm" data-bind="click: addChildItem(Bidders, KoBidder)">Add</button>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label class="col-md-2 col-form-label-sm">Logs</label>
+        <div class="col-md-10">
+            <div data-bind="foreach: Logs">
+                <div class="row mb-2">
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" placeholder="Nickname" data-bind="value: Nickname" />
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" placeholder="Email" data-bind="value: Email" />
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control form-control-sm" placeholder="Text" data-bind="value: Text" />
+                    </div>
+                    <div class="col-1">
+                        <a class="btn btn-link btn-sm" data-bind="click: $parent.removeChildItem($parent.Logs, $data)">
+                            <i class="far fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-light btn-sm" data-bind="click: addChildItem(Logs, KoLog)">Add</button>
+        </div>
+    </div>
+</form>
