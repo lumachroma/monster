@@ -6,7 +6,7 @@
     <title>@ViewBag.Title - Monster</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
 </head>
 <body>
     <div class="container">
@@ -50,6 +50,7 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", false)
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/moment")
 </body>
 </html>
