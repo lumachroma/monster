@@ -6,7 +6,9 @@
     redirect: undefined,
     isBusy: ko.observable(false),
     entity: ko.observable(),
-    viewDetails: function (model, action,
+    kendoCreateComponents: function () { },
+    viewDetails: function (model,
+        action,
         id = undefined,
         endpoint = undefined,
         redirect = undefined) {
@@ -25,6 +27,7 @@
                 .done(function (result) {
                     console.log(result);
                     thisObj.entity(new window[koModel](result));
+                    thisObj.kendoCreateComponents();
                     thisObj.isBusy(false);
                 }).fail(function (e) {
                     console.log(e.status);
@@ -34,6 +37,7 @@
                 });
         } else {
             thisObj.entity(new window[koModel](guid()));
+            thisObj.kendoCreateComponents();
         }
     },
     createEntity: function (thisObj) {
