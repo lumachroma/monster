@@ -1,7 +1,7 @@
 ﻿<form class="form-horizontal" data-bind="with: entity" id="user-details-value-form">
     <!--ko if: $root.action === 'create user'-->
     <div class="form-group row">
-        <label class="col-md-2 col-form-label">Username</label>
+        <label class="col-md-2 col-form-label-sm">Username</label>
         <div class="col-md-6">
             <input type="text" class="form-control form-control-sm" data-bind="value: Username" />
         </div>
@@ -9,7 +9,7 @@
     <!--/ko-->
     <!--ko if: $root.action === 'edit user'-->
     <div class="form-group row">
-        <label class="col-md-2 col-form-label">Username</label>
+        <label class="col-md-2 col-form-label-sm">Username</label>
         <div class="col-md-6">
             <input type="text" class="form-control form-control-sm" data-bind="value: Username" disabled="disabled" />
         </div>
@@ -17,7 +17,7 @@
     <!--/ko-->
     <!--ko if: $root.action === 'create user'-->
     <div class="form-group row">
-        <label class="col-md-2 col-form-label">Password</label>
+        <label class="col-md-2 col-form-label-sm">Password</label>
         <div class="col-md-6">
             <input type="password" class="form-control form-control-sm" data-bind="value: Password" />
         </div>
@@ -25,37 +25,37 @@
     <!--/ko-->
     <!--ko if: $root.action === 'edit user'-->
     <div class="form-group row">
-        <label class="col-md-2 col-form-label">Password</label>
+        <label class="col-md-2 col-form-label-sm">Password</label>
         <div class="col-md-6">
             <input type="password" class="form-control form-control-sm" data-bind="value: Password" disabled="disabled" />
         </div>
     </div>
     <!--/ko-->
     <div class="form-group row">
-        <label class="col-md-2 col-form-label">Email</label>
+        <label class="col-md-2 col-form-label-sm">Email</label>
         <div class="col-md-6">
             <input type="text" class="form-control form-control-sm" data-bind="value: Email" />
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-2 col-form-label">Location</label>
+        <label class="col-md-2 col-form-label-sm">Location</label>
         <div class="col-md-6">
             <input type="text" class="form-control form-control-sm" data-bind="value: Location" />
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-2 col-form-label">Country</label>
+        <label class="col-md-2 col-form-label-sm">Country</label>
         <div class="col-md-6">
             <input type="text" class="form-control form-control-sm" data-bind="value: Country" />
         </div>
     </div>
     <div class="form-group row">
-        <label class="col-md-2 col-form-label">Roles</label>
+        <label class="col-md-2 col-form-label-sm">Roles</label>
         <div class="col-md-6">
             <div class="input-group">
                 <input type="text" class="form-control form-control-sm" placeholder="Role" id="user-details-value-form-roles-input" />
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-light" data-bind="click: addChildItem(Roles, document.getElementById('user-details-value-form-roles-input').value)">Add</button>
+                    <button type="button" class="btn btn-sm btn-light" data-bind="click: addChildItem(Roles, document.getElementById('user-details-value-form-roles-input').value)">Add</button>
                 </div>
             </div>
             <ul class="list-inline" data-bind="foreach: Roles">
