@@ -11,7 +11,7 @@
         WebId: ko.observable(),
 
         addChildItem: function (list, type) {
-            if (typeof type === "object") {
+            if (typeof type === "function") {
                 return function () {
                     list.push(new type(guid()));
                 };
