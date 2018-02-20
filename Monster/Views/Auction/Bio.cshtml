@@ -41,14 +41,15 @@
     <button class="btn btn-light" data-bind="click: editEntity">Edit</button>
     <a class="btn btn-light" href="/Auction/Dashboard">Cancel</a>
 </div>
-<script src="~/Scripts/jquery-3.3.1.js"></script>
-<script src="~/Scripts/knockout-3.4.2.js"></script>
-<script src="~/Scripts/KOScripts/KOShared.js"></script>
-<script src="~/Scripts/KOScripts/KOSchemas/KOUser.js"></script>
-<script src="~/Scripts/KOScripts/KODetails.js"></script>
-<script>
-    $(function() {
-        ko.applyBindings(modelView);
-        modelView.viewDetails("User", "@ViewBag.Title", "@ViewBag.Key", undefined, "/Auction/Dashboard");
-    });
-</script>
+@section scripts
+{
+    <script src="~/Scripts/KOScripts/KOShared.js"></script>
+    <script src="~/Scripts/KOScripts/KOSchemas/KOUser.js"></script>
+    <script src="~/Scripts/KOScripts/KODetails.js"></script>
+    <script>
+        $(function() {
+            ko.applyBindings(modelView);
+            modelView.viewDetails("User", "@ViewBag.Title", "@ViewBag.Key", undefined, "/Auction/Dashboard");
+        });
+    </script>
+}
