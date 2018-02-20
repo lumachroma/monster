@@ -13,38 +13,38 @@ namespace Monster.Firebase
     public class FirebaseDataContext<T> : IFirebaseRepository<T> where T : IFirebaseEntity
     {
         private readonly string _node;
-        private readonly FirebaseQuery _query;
+        internal readonly FirebaseQuery Query;
         private string _path;
 
         public FirebaseDataContext(string node, FirebaseQuery query)
         {
             _node = node;
             _path = node;
-            _query = query;
+            Query = query;
         }
 
         public async Task<IReadOnlyCollection<FirebaseObject<T>>> GetAllAsync()
         {
-            var results = await _query.Child(_path).GetAsync<T>();
+            var results = await Query.Child(_path).GetAsync<T>();
             return results;
         }
 
         public async Task<T> GetSingleAysnc()
         {
-            var result = await _query.Child(_path).GetSingleAsync<T>();
+            var result = await Query.Child(_path).GetSingleAsync<T>();
             return result;
         }
 
         public async Task<T> GetByKeyAsync(string key)
         {
-            var result = await _query.Child(_path).Child(key).GetSingleAsync<T>();
+            var result = await Query.Child(_path).Child(key).GetSingleAsync<T>();
             return result;
         }
 
         public async Task<FirebaseObject<T>> PostAsync(T entity)
         {
             InitNewEntity(entity);
-            var result = await _query.Child(_path).PostAsync(entity);
+            var result = await Query.Child(_path).PostAsync(entity);
             return result;
         }
 
@@ -52,8 +52,8 @@ namespace Monster.Firebase
         {
             await InitExistingEntity(entity, key);
             T result;
-            if (null != key) result = await _query.Child(_path).Child(key).PutAsync(entity);
-            else result = await _query.Child(_path).PutAsync(entity);
+            if (null != key) result = await Query.Child(_path).Child(key).PutAsync(entity);
+            else result = await Query.Child(_path).PutAsync(entity);
             return result;
         }
 
@@ -62,20 +62,20 @@ namespace Monster.Firebase
             await InitExistingEntity(entity, key);
             string result;
             if (null != key)
-                result = await _query.Child(_path).Child(key).PatchAsync(JsonConvert.SerializeObject(entity));
-            else result = await _query.Child(_path).PatchAsync(JsonConvert.SerializeObject(entity));
+                result = await Query.Child(_path).Child(key).PatchAsync(JsonConvert.SerializeObject(entity));
+            else result = await Query.Child(_path).PatchAsync(JsonConvert.SerializeObject(entity));
             return result;
         }
 
         public async Task DeleteAsync(string key = null)
         {
-            if (null != key) await _query.Child(_path).Child(key).DeleteAsync();
-            else await _query.Child(_path).DeleteAsync();
+            if (null != key) await Query.Child(_path).Child(key).DeleteAsync();
+            else await Query.Child(_path).DeleteAsync();
         }
 
         public async Task<IReadOnlyCollection<FirebaseObject<T>>> SearchByKeyValueAsync(string key, string value)
         {
-            var results = await _query.Child(_path).OrderBy(key).EqualTo(value).GetAsync<T>();
+            var results = await Query.Child(_path).OrderBy(key).EqualTo(value).GetAsync<T>();
             return results;
         }
 
