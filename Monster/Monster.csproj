@@ -293,7 +293,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Auction\Dashboard.cshtml" />
     <Content Include="Views\Auction\Bio.cshtml" />
-    <Content Include="Views\Auction\Roles.cshtml" />
+    <Content Include="Views\User\Roles.cshtml" />
     <Content Include="Views\Auction\Create.cshtml" />
     <Content Include="Views\Auction\_DetailsValue.cshtml" />
     <Content Include="Views\Auction\Edit.cshtml" />
@@ -301,6 +301,7 @@
     <Content Include="Views\Auction\_DetailsText.cshtml" />
     <Content Include="Views\Auction\Remove.cshtml" />
     <Content Include="Views\Auction\Index.cshtml" />
+    <Content Include="Views\Auction\Password.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,6 +13,15 @@
     <div class="row">
         <div class="col-md-4 mb-2">
             <h4>User Details</h4>
+            <div class="btn-group btn-group-sm mb-2" role="group">
+                @if (ViewBag.IsAdministrator)
+                {
+                    <a class="btn btn-light" href="/User" title="Users"><i class="fas fa-users fa-fw"></i></a>
+                    <a class="btn btn-light" href="/User/Roles" title="Roles"><i class="fas fa-universal-access fa-fw"></i></a>
+                }
+                <a class="btn btn-light" href="/Auction/Password/@Model.Key" title="Set Password"><i class="fas fa-key fa-fw"></i></a>
+                <a class="btn btn-light" href="/Auction/Bio/@Model.Key" title="Edit"><i class="fas fa-edit fa-fw"></i></a>
+            </div>
             <ul class="list-group">
                 <li class="list-group-item">
                     <label class="col-12">Username</label>
@@ -26,18 +35,12 @@
                     <label class="col-12">Location</label>
                     <span class="col-12">@Model.Object.Location, @Model.Object.Country</span>
                 </li>
-                <li class="list-group-item">
-                    <div class="float-right">
-                        <a class="btn btn-light" href="/Auction/Roles">Roles</a>
-                        <a class="btn btn-light" href="/Auction/Bio/@Model.Key">Edit</a>
-                    </div>
-                </li>
             </ul>
         </div>
         <div class="col-md-8 mb-2">
             <div class="row mb-4">
                 <div class="col">
-                    <h4>Coming Auctions</h4>
+                    <h4>Active Auctions</h4>
                     <div class="btn-group btn-group-sm mb-2" role="group">
                         <a class="btn btn-light" href="/Auction"><i class="far fa-list-alt fa-fw"></i></a>
                         <a class="btn btn-light"><i class="fas fa-sync fa-fw"></i></a>
@@ -52,7 +55,7 @@
             </div>
             <div class="row mb-4">
                 <div class="col">
-                    <h4>Past Auctions</h4>
+                    <h4>Fixed Auctions</h4>
                     <div class="btn-group btn-group-sm mb-2" role="group">
                         <a class="btn btn-light"><i class="far fa-list-alt fa-fw"></i></a>
                         <a class="btn btn-light"><i class="fas fa-sync fa-fw"></i></a>

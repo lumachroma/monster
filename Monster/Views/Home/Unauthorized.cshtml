@@ -4,4 +4,11 @@
 <h1 class="display-4">@ViewBag.Title</h1>
 <p class="lead">@ViewBag.Message</p>
 <p class="lead">The request has not been applied because it lacks valid authentication credentials for the target resource.</p>
-<a class="btn btn-light" href="/Account/Login">Login</a>
+@if (!User.Identity.IsAuthenticated)
+{
+    <a class="btn btn-light" href="/Account/Login">Login</a>
+}
+else
+{
+    <a class="btn btn-light" href="/Auction/Dashboard">Cancel</a>
+}

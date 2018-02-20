@@ -37,6 +37,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Dashboard()
         {
             ViewBag.Message = "The dashboard page.";
+            ViewBag.IsAdministrator = IsAdministrator();
 
             var key = ((ClaimsIdentity)HttpContext.User.Identity).Claims
                 .Where(c => c.Type == ClaimTypes.NameIdentifier)
@@ -57,14 +58,6 @@ namespace Monster.Controllers
             ViewBag.Message = "The bio page.";
 
             return View();
-        }
-
-        [Authorize]
-        public ActionResult Roles()
-        {
-            ViewBag.Message = "The roles page.";
-
-            return View((User as ClaimsPrincipal)?.Claims);
         }
 
         [Authorize]
@@ -101,6 +94,16 @@ namespace Monster.Controllers
 
         [Authorize]
         public ActionResult Remove(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            ViewBag.Key = key;
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Password(string key)
         {
             if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
