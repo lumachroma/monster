@@ -114,7 +114,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> All()
         {
             IReadOnlyCollection<FirebaseObject<Auction>> results;
-            if (IsAdmin()) results = await _adminAuctionQuery.All();
+            if (IsAdministrator()) results = await _adminAuctionQuery.All();
             else results = await _userAuctionQuery.All();
             return this.Ok(JsonConvert.SerializeObject(results));
         }
@@ -124,7 +124,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Get(string key)
         {
             Auction result;
-            if (IsAdmin()) result = await _adminAuctionQuery.Get(key);
+            if (IsAdministrator()) result = await _adminAuctionQuery.Get(key);
             else result = await _userAuctionQuery.Get(key);
             return null != result
                 ? this.Ok(JsonConvert.SerializeObject(result))
@@ -136,7 +136,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Post(Auction auction)
         {
             FirebaseObject<Auction> result = null;
-            if (IsAdmin()) result = await _adminAuctionQuery.Post(auction);
+            if (IsAdministrator()) result = await _adminAuctionQuery.Post(auction);
             else await _userAuctionQuery.Post(auction);
             return null != result
                 ? this.Ok(JsonConvert.SerializeObject(result))
@@ -151,7 +151,7 @@ namespace Monster.Controllers
             if (null == existing) return this.NotFound($"{key} not found!");
 
             Auction result;
-            if (IsAdmin()) result = await _adminAuctionQuery.Put(key, auction);
+            if (IsAdministrator()) result = await _adminAuctionQuery.Put(key, auction);
             else result = await _userAuctionQuery.Put(key, auction);
             return null != result
                 ? this.Ok(JsonConvert.SerializeObject(new FirebaseObject<Auction>(key, auction)))
@@ -165,12 +165,12 @@ namespace Monster.Controllers
             var existing = await _auctionContext.GetByKeyAsync(key);
             if (null == existing) return this.NotFound($"{key} not found!");
 
-            if (IsAdmin()) await _adminAuctionQuery.Delete(key);
+            if (IsAdministrator()) await _adminAuctionQuery.Delete(key);
             else await _userAuctionQuery.Delete(key);
             return this.Ok(JsonConvert.SerializeObject(new FirebaseObject<Auction>(key, auction)));
         }
 
-        private bool IsAdmin()
+        private bool IsAdministrator()
         {
             return HttpContext.User.IsInRole("Administrator") ||
                    HttpContext.User.IsInRole("administrator") ||
