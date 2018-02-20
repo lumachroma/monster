@@ -21,7 +21,7 @@ namespace Monster.Api
         [Route("email")]
         public string GetUserEmail()
         {
-            var email = ((ClaimsIdentity)User.Identity).Claims
+            var email = ((ClaimsIdentity)HttpContext.Current.User.Identity).Claims
                 .Where(c => c.Type == ClaimTypes.Email)
                 .Select(c => c.Value)
                 .First();
@@ -32,7 +32,7 @@ namespace Monster.Api
         [Route("roles")]
         public IEnumerable<string> GetRoles()
         {
-            var roles = ((ClaimsIdentity)User.Identity).Claims
+            var roles = ((ClaimsIdentity)HttpContext.Current.User.Identity).Claims
                 .Where(c => c.Type == ClaimTypes.Role)
                 .Select(c => c.Value);
             return roles;
