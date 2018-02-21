@@ -126,11 +126,11 @@ namespace Monster.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult> Some()
+        public async Task<ActionResult> Some(string key)
         {
-            var results = await _auctionContext.Query.Child(_auctionContext.GetPath())
-                .OrderByKey().LimitToLast("5")
-                .GetAsync<Auction>();
+            IReadOnlyCollection<FirebaseObject<Auction>> results;
+            if (IsAdministrator()) results = await _adminAuctionQuery.Some(key);
+            else results = await _userAuctionQuery.Some(key);
             return this.Ok(JsonConvert.SerializeObject(results));
         }
 
