@@ -1,48 +1,52 @@
 ﻿@{
     ViewBag.Title = "Auctions";
 }
-<div class="mb-2">
-    <h4 class="display-4">
-        @ViewBag.Title
-        <small class="text-secondary">
-            <i class="fas fa-spinner fa-pulse fa-xs" data-bind="visible: isBusy"></i>
-        </small>
-    </h4>
+<div class="bg-light pt-4 pb-4">
+    <div class="container"> 
+        <h4 class="display-4">
+            @ViewBag.Title
+            <small class="text-secondary">
+                <i class="fas fa-spinner fa-pulse fa-xs" data-bind="visible: isBusy"></i>
+            </small>
+        </h4>
+    </div>
 </div>
-<div class="mb-2">
-    <div class="table-responsive">
-        <table class="table table-sm table-striped">
-            <thead>
-                <tr>
-                    <th>&nbsp;</th>
-                    <th>Title</th>
-                    <th>Status</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Start</th>
-                    <th>
-                        <a class="text-secondary" href="/Auction/Create" title="Add">
-                            <i class="fas fa-gavel fa-fw fa-xs"></i>
-                        </a>
-                    </th>
-                </tr>
-            </thead>
-            <tbody data-bind="foreach: list">
-                <tr>
-                    <th><span data-bind="text: $index() + 1"></span>.</th>
-                    <td><span data-bind="text: Object.Title"></span></td>
-                    <td><span data-bind="text: Object.Status"></span></td>
-                    <td><span data-bind="text: Object.ProductName"></span></td>
-                    <td><span data-bind="text: Object.ProductPrice"></span></td>
-                    <td><span data-bind="text: moment(Object.StartDateTime).format('YYYY-MM-DD hh:mm A')"></span></td>
-                    <td>
-                        <a class="text-secondary" data-bind="attr: { href: '/Auction/Details/' + Key }" title="Details"><i class="fas fa-search fa-fw fa-xs"></i></a>
-                        <a class="text-secondary" data-bind="attr: { href: '/Auction/Edit/' + Key }" title="Edit"><i class="fas fa-edit fa-fw fa-xs"></i></a>
-                        <a class="text-secondary" data-bind="attr: { href: '/Auction/Remove/' + Key }" title="Delete"><i class="fas fa-eraser fa-fw fa-xs"></i></a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div class="container">
+    <div class="pt-4 pb-4">
+        <div class="table-responsive">
+            <table class="table table-sm table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>&nbsp;</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Start</th>
+                        <th>
+                            <a class="text-secondary" href="/Auction/Create" title="Add">
+                                <i class="fas fa-gavel fa-fw fa-xs"></i>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: list">
+                    <tr>
+                        <th><span data-bind="text: $index() + 1"></span>.</th>
+                        <td><span data-bind="text: Object.Title"></span></td>
+                        <td><span data-bind="text: Object.Status"></span></td>
+                        <td><span data-bind="text: Object.ProductName"></span></td>
+                        <td><span data-bind="text: Object.ProductPrice"></span></td>
+                        <td><span data-bind="text: moment(Object.StartDateTime).format('YYYY-MM-DD hh:mm A')"></span></td>
+                        <td>
+                            <a class="text-secondary" data-bind="attr: { href: '/Auction/Details/' + Key }" title="Details"><i class="fas fa-search fa-fw fa-xs"></i></a>
+                            <a class="text-secondary" data-bind="attr: { href: '/Auction/Edit/' + Key }" title="Edit"><i class="fas fa-edit fa-fw fa-xs"></i></a>
+                            <a class="text-secondary" data-bind="attr: { href: '/Auction/Remove/' + Key }" title="Delete"><i class="fas fa-eraser fa-fw fa-xs"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @section scripts

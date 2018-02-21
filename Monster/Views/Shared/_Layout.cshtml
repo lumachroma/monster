@@ -11,9 +11,9 @@
     <link href="http://kendo.cdn.telerik.com/2018.1.117/styles/kendo.bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/">Monster</a>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark box-shadow">
+        <div class="container">
+            <a class="navbar-brand mb-0 h1" href="/">Monster</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,24 +32,29 @@
                 <span class="navbar-text">
                     @if (!User.Identity.IsAuthenticated)
                     {
-                        <a class="btn btn-outline-secondary btn-sm" href="/Account/Login" title="Login"><i class="fas fa-sign-in-alt fa-fw"></i></a>
+                        <a class="btn btn-dark btn-sm" href="/Account/Login" title="Login"><i class="fas fa-sign-in-alt fa-fw"></i></a>
                     }
                     else
                     {
-                        <a class="btn btn-outline-secondary btn-sm" href="/Auction/Dashboard" title="Dashboard"><i class="fab fa-fort-awesome fa-fw"></i></a>
-                        <a class="btn btn-outline-secondary btn-sm" href="/Account/Logoff" title="Logoff"><i class="fas fa-sign-out-alt fa-fw"></i></a>
+                        <a class="btn btn-dark btn-sm" href="/Auction/Dashboard" title="Dashboard"><i class="fab fa-fort-awesome fa-fw"></i></a>
+                        <a class="btn btn-dark btn-sm" href="/Account/Logoff" title="Logoff"><i class="fas fa-sign-out-alt fa-fw"></i></a>
                     }
                 </span>
             </div>
-        </nav>
-        <main role="main">
-            @RenderBody()
-        </main>
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Monster</p>
-        </footer>
+        </div>
+    </nav>
+<main role="main">
+    <div>
+        @RenderBody()
     </div>
+</main>
+    <footer>
+        <div class="bg-white pt-4 pb-4">
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year - Monster</p>
+            </div>
+        </div>
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/knockout")

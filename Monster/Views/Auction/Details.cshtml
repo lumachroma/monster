@@ -1,22 +1,25 @@
 ﻿@{
     ViewBag.Title = "Auction Details";
 }
-<div class="mb-2">
-    <h4 class="display-4">
-        @ViewBag.Title
-        <small class="text-secondary">
-            <i class="fas fa-spinner fa-pulse fa-xs" data-bind="visible: isBusy"></i>
-        </small>
-    </h4>
-</div>
-<div class="mb-2">
-    <hr />
-    @Html.Partial("_DetailsText")
-    <div class="btn-group" role="group" aria-label="Controls">
-        <a class="btn btn-light" href="/Auction/Edit/@ViewBag.Key" title="Edit"><i class="fas fa-edit fa-fw"></i></a>
-        <a class="btn btn-light" href="/Auction/Remove/@ViewBag.Key" title="Delete"><i class="fas fa-eraser fa-fw"></i></a>
+<div class="bg-light pt-4 pb-4">
+    <div class="container">
+        <h4 class="display-4">
+            @ViewBag.Title
+            <small class="text-secondary">
+                <i class="fas fa-spinner fa-pulse fa-xs" data-bind="visible: isBusy"></i>
+            </small>
+        </h4>
     </div>
-    <a class="btn btn-light" href="/Auction/Dashboard">Cancel</a>
+</div>
+<div class="container">
+    <div class="pt-4 pb-4">
+        @Html.Partial("_DetailsText")
+        <div class="btn-group" role="group" aria-label="Controls">
+            <a class="btn btn-light" href="/Auction/Edit/@ViewBag.Key" title="Edit"><i class="fas fa-edit fa-fw"></i></a>
+            <a class="btn btn-light" href="/Auction/Remove/@ViewBag.Key" title="Delete"><i class="fas fa-eraser fa-fw"></i></a>
+        </div>
+        <a class="btn btn-light" href="/Auction/Dashboard">Cancel</a>
+    </div>
 </div>
 @section scripts
 {

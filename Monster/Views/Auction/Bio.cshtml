@@ -1,45 +1,48 @@
 ﻿@{
     ViewBag.Title = "Bio";
 }
-<div class="mb-2">
-    <h4 class="display-4">
-        @ViewBag.Title
-        <small class="text-secondary">
-            <i class="fas fa-spinner fa-pulse fa-xs" data-bind="visible: isBusy"></i>
-        </small>
-    </h4>
-    <p class="lead">@ViewBag.Message</p>
+<div class="bg-light pt-4 pb-4">
+    <div class="container">
+        <h4 class="display-4">
+            @ViewBag.Title
+            <small class="text-secondary">
+                <i class="fas fa-spinner fa-pulse fa-xs" data-bind="visible: isBusy"></i>
+            </small>
+        </h4>
+        <p class="lead">@ViewBag.Message</p>
+    </div>
 </div>
-<div class="mb-2">
-    <hr />
-    <form class="form-horizontal" data-bind="with: entity" id="user-details-value-form">
-        <div class="form-group row">
-            <label class="col-md-2 col-form-label">Username</label>
-            <div class="col-md-6">
-                <input type="text" class="form-control form-control-sm" data-bind="value: Username" disabled="disabled" />
+<div class="container">
+    <div class="pt-4 pb-4">
+        <form class="form-horizontal" data-bind="with: entity" id="user-details-value-form">
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Username</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" data-bind="value: Username" disabled="disabled" />
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 col-form-label">Email</label>
-            <div class="col-md-6">
-                <input type="text" class="form-control form-control-sm" data-bind="value: Email" />
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Email</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" data-bind="value: Email" />
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 col-form-label">Location</label>
-            <div class="col-md-6">
-                <input type="text" class="form-control form-control-sm" data-bind="value: Location" />
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Location</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" data-bind="value: Location" />
+                </div>
             </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-md-2 col-form-label">Country</label>
-            <div class="col-md-6">
-                <input type="text" class="form-control form-control-sm" data-bind="value: Country" />
+            <div class="form-group row">
+                <label class="col-md-2 col-form-label">Country</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control form-control-sm" data-bind="value: Country" />
+                </div>
             </div>
-        </div>
-    </form>
-    <button class="btn btn-light" data-bind="click: editEntity">Edit</button>
-    <a class="btn btn-light" href="/Auction/Dashboard">Cancel</a>
+        </form>
+        <button class="btn btn-light" data-bind="click: editEntity">Edit</button>
+        <a class="btn btn-light" href="/Auction/Dashboard">Cancel</a>
+    </div>
 </div>
 @section scripts
 {

@@ -4,65 +4,87 @@
     ViewBag.Title = "Dashboard";
 }
 
-<div class="mb-2">
-    <h4 class="display-4">@ViewBag.Title</h4>
-    <p class="lead">@ViewBag.Message</p>
+<div class="bg-light pt-4 pb-4">
+    <div class="container">
+        <h4 class="display-4">@ViewBag.Title</h4>
+        <p class="lead">@ViewBag.Message</p>
+    </div>
 </div>
-<hr />
-<div class="mb-2">
-    <div class="row">
-        <div class="col-md-4 mb-2">
-            <h4>User Details</h4>
-            <div class="btn-group btn-group-sm mb-2" role="group">
-                @if (ViewBag.IsAdministrator)
-                {
-                    <a class="btn btn-light" href="/User" title="Users"><i class="fas fa-users fa-fw"></i></a>
-                    <a class="btn btn-light" href="/User/Roles" title="Roles"><i class="fas fa-universal-access fa-fw"></i></a>
-                }
-                <a class="btn btn-light" href="/Auction/Password/@Model.Key" title="Set Password"><i class="fas fa-key fa-fw"></i></a>
-                <a class="btn btn-light" href="/Auction/Bio/@Model.Key" title="Edit"><i class="fas fa-edit fa-fw"></i></a>
+<div class="container">
+    <div class="pt-4 pb-4">
+        <div class="row">
+            <div class="col-md-4 mb-2">
+                <h4>User Details</h4>
+                <div class="btn-group btn-group-sm mb-2" role="group">
+                    @if (ViewBag.IsAdministrator)
+                    {
+                        <a class="btn btn-secondary" href="/User" title="Users"><i class="fas fa-users fa-fw"></i></a>
+                        <a class="btn btn-secondary" href="/User/Roles" title="Roles"><i class="fas fa-universal-access fa-fw"></i></a>
+                    }
+                    <a class="btn btn-secondary" href="/Auction/Password/@Model.Key" title="Set Password"><i class="fas fa-key fa-fw"></i></a>
+                    <a class="btn btn-secondary" href="/Auction/Bio/@Model.Key" title="Edit"><i class="fas fa-edit fa-fw"></i></a>
+                </div>
+                <ul class="list-group box-shadow">
+                    <li class="list-group-item">
+                        <h6 class="my-0">Username</h6>
+                        <small class="text-muted">@Model.Object.Username</small>
+                    </li>
+                    <li class="list-group-item">
+                        <h6 class="my-0">Email</h6>
+                        <small class="text-muted">@Model.Object.Email</small>
+                    </li>
+                    <li class="list-group-item">
+                        <h6 class="my-0">Location</h6>
+                        <small class="text-muted">@Model.Object.Location, @Model.Object.Country</small>
+                    </li>
+                </ul>
             </div>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <label class="col-12">Username</label>
-                    <span class="col-12">@Model.Object.Username</span>
-                </li>
-                <li class="list-group-item">
-                    <label class="col-12">Email</label>
-                    <span class="col-12">@Model.Object.Email</span>
-                </li>
-                <li class="list-group-item">
-                    <label class="col-12">Location</label>
-                    <span class="col-12">@Model.Object.Location, @Model.Object.Country</span>
-                </li>
-            </ul>
-        </div>
-        <div class="col-md-8 mb-2">
-            <div class="row mb-4">
-                <div class="col">
-                    <h4>Active Auctions</h4>
-                    <div class="btn-group btn-group-sm mb-2" role="group">
-                        <a class="btn btn-light" href="/Auction"><i class="far fa-list-alt fa-fw"></i></a>
-                        <a class="btn btn-light"><i class="fas fa-sync fa-fw"></i></a>
-                        <a class="btn btn-light" href="/Auction/Create"><i class="fas fa-gavel fa-fw"></i></a>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            This is some text within a card body.
+            <div class="col-md-8 mb-2">
+                <div class="row mb-4">
+                    <div class="col">
+                        <h4>Active Auctions</h4>
+                        <div class="btn-group btn-group-sm mb-2" role="group">
+                            <a class="btn btn-secondary" href="/Auction"><i class="far fa-list-alt fa-fw"></i></a>
+                            <button type="button" class="btn btn-secondary" data-bind="click: refresh"><i class="fas fa-sync fa-fw"></i></button>
+                            <a class="btn btn-secondary" href="/Auction/Create"><i class="fas fa-gavel fa-fw"></i></a>
+                        </div>
+                        <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i>
+                        <div class="card box-shadow">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-sm">
+                                        <thead>
+                                            <tr>
+                                                <td>Title</td>
+                                                <td>Price</td>
+                                                <td>Start</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach: list">
+                                            <tr>
+                                                <td><span data-bind="text: Object.Title"></span></td>
+                                                <td><span data-bind="text: Object.ProductPrice"></span></td>
+                                                <td><span data-bind="text: moment(Object.StartDateTime).format('YYYY-MM-DD hh:mm A')"></span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col">
-                    <h4>Fixed Auctions</h4>
-                    <div class="btn-group btn-group-sm mb-2" role="group">
-                        <a class="btn btn-light"><i class="far fa-list-alt fa-fw"></i></a>
-                        <a class="btn btn-light"><i class="fas fa-sync fa-fw"></i></a>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
-                            This is some text within a card body.
+                <div class="row mb-4">
+                    <div class="col">
+                        <h4>Fixed Auctions</h4>
+                        <div class="btn-group btn-group-sm mb-2" role="group">
+                            <a class="btn btn-secondary" href="#"><i class="far fa-list-alt fa-fw"></i></a>
+                            <a class="btn btn-secondary" href="#"><i class="fas fa-sync fa-fw"></i></a>
+                        </div>
+                        <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: isBusy"></i>
+                        <div class="card box-shadow">
+                            <div class="card-body">
+                                This is some text within a card body.
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,3 +92,14 @@
         </div>
     </div>
 </div>
+@section scripts
+{
+    <script src="~/Scripts/KOScripts/KOShared.js"></script>
+    <script src="~/Scripts/KOScripts/KOAll.js"></script>
+    <script>
+        $(function () {
+            ko.applyBindings(modelView);
+            modelView.viewAll("Auction", "/Auction/Some");
+        });
+    </script>
+}

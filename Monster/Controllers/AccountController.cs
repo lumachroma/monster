@@ -40,6 +40,7 @@ namespace Monster.Controllers
         public ActionResult Login(bool success = true, string status = "OK", string returnUrl = null)
         {
             ViewBag.Title = "Login";
+            ViewBag.Message = "The login page.";
 
             ViewBag.Success = success;
             ViewBag.Status = status;

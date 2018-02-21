@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using FirebaseRest;
+using FirebaseRest.Extensions;
 using FirebaseRest.Models;
 using Monster.Extensions;
 using Monster.Firebase;
@@ -108,6 +109,7 @@ namespace Monster.Controllers
             if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             ViewBag.Key = key;
+            ViewBag.Message = "The password page.";
 
             return View();
         }
@@ -119,6 +121,16 @@ namespace Monster.Controllers
             IReadOnlyCollection<FirebaseObject<Auction>> results;
             if (IsAdministrator()) results = await _adminAuctionQuery.All();
             else results = await _userAuctionQuery.All();
+            return this.Ok(JsonConvert.SerializeObject(results));
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> Some()
+        {
+            var results = await _auctionContext.Query.Child(_auctionContext.GetPath())
+                .OrderByKey().LimitToLast("5")
+                .GetAsync<Auction>();
             return this.Ok(JsonConvert.SerializeObject(results));
         }
 

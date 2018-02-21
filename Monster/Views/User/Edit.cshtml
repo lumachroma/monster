@@ -1,19 +1,22 @@
 ﻿@{
     ViewBag.Title = "Edit User";
 }
-<div class="mb-2">
-    <h4 class="display-4">
-        @ViewBag.Title
-        <small class="text-secondary">
-            <i class="fas fa-spinner fa-pulse fa-xs" data-bind="visible: isBusy"></i>
-        </small>
-    </h4>
+<div class="bg-light pt-4 pb-4">
+    <div class="container">
+        <h4 class="display-4">
+            @ViewBag.Title
+            <small class="text-secondary">
+                <i class="fas fa-spinner fa-pulse fa-xs" data-bind="visible: isBusy"></i>
+            </small>
+        </h4>
+    </div>
 </div>
-<div class="mb-2">
-    <hr />
-    @Html.Partial("_DetailsValue")
-    <button class="btn btn-light" data-bind="click: editEntity">Edit</button>
-    <a class="btn btn-light" href="/User">Cancel</a>
+<div class="container">
+    <div class="pt-4 pb-4">
+        @Html.Partial("_DetailsValue")
+        <button class="btn btn-light" data-bind="click: editEntity">Edit</button>
+        <a class="btn btn-light" href="/User">Cancel</a>
+    </div>
 </div>
 @section scripts
 {
