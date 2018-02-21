@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using FirebaseRepository;
+using FirebaseRest.Extensions;
 using FirebaseRest.Models;
 
 namespace Monster.Firebase
@@ -18,6 +19,11 @@ namespace Monster.Firebase
         public override async Task<IReadOnlyCollection<FirebaseObject<T>>> All()
         {
             return await _context.GetAllAsync();
+        }
+
+        public override async Task<IReadOnlyCollection<FirebaseObject<T>>> Some(string limit)
+        {
+            return await _context.Query.Child(_context.GetPath()).OrderByKey().LimitToLast(limit).GetAsync<T>();
         }
 
         public override async Task Delete(string key)
