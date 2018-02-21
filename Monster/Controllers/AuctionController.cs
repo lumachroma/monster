@@ -6,7 +6,6 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using FirebaseRest;
-using FirebaseRest.Extensions;
 using FirebaseRest.Models;
 using Monster.Extensions;
 using Monster.Firebase;
