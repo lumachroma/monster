@@ -28,7 +28,7 @@ namespace Monster.Controllers
                                "MfX7DaAWOUjr0zJ2invYbaX6UceHZ3vrif0VGeL4";
             var firebaseQuery = new FirebaseQuery(new FirebaseClient(firebaseUrl, firebaseAuth));
             _userContext = new FirebaseDataContext<User>("Users", firebaseQuery);
-            _auctionContext = new FirebaseDataContext<Auction>("Auction", firebaseQuery);
+            _auctionContext = new FirebaseDataContext<Auction>("Auctions", firebaseQuery);
             _adminAuctionQuery = new AdminControllerQueryEntity<Auction>(_auctionContext);
             _userAuctionQuery = new UserControllerQueryEntity<Auction>(_auctionContext);
         }
