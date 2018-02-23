@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Net;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -52,7 +51,7 @@ namespace Monster.Controllers
         [Authorize]
         public ActionResult Bio(string key)
         {
-            if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (string.IsNullOrEmpty(key)) return this.BadRequest(string.Empty);
 
             ViewBag.Key = key;
             ViewBag.Message = "The bio page.";
@@ -69,7 +68,7 @@ namespace Monster.Controllers
         [Authorize]
         public ActionResult Details(string key)
         {
-            if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (string.IsNullOrEmpty(key)) return this.BadRequest(string.Empty);
 
             ViewBag.Key = key;
 
@@ -85,7 +84,7 @@ namespace Monster.Controllers
         [Authorize]
         public ActionResult Edit(string key)
         {
-            if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (string.IsNullOrEmpty(key)) return this.BadRequest(string.Empty);
 
             ViewBag.Key = key;
 
@@ -95,7 +94,7 @@ namespace Monster.Controllers
         [Authorize]
         public ActionResult Remove(string key)
         {
-            if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (string.IsNullOrEmpty(key)) return this.BadRequest(string.Empty);
 
             ViewBag.Key = key;
 
@@ -105,7 +104,7 @@ namespace Monster.Controllers
         [Authorize]
         public ActionResult Password(string key)
         {
-            if (string.IsNullOrEmpty(key)) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (string.IsNullOrEmpty(key)) return this.BadRequest(string.Empty);
 
             ViewBag.Key = key;
             ViewBag.Message = "The password page.";
