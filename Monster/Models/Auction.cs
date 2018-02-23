@@ -22,6 +22,7 @@ namespace Monster.Models
         public decimal ProductPrice { get; set; }
         public decimal Amount { get; set; }
         public decimal Step { get; set; }
+        public int Call { get; set; }
         public int Interval { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime StopDateTime { get; set; }

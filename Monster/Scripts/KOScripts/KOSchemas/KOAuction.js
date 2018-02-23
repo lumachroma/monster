@@ -11,6 +11,7 @@
         ProductPrice: ko.observable(),
         Amount: ko.observable(),
         Step: ko.observable(),
+        Call: ko.observable(),
         Interval: ko.observable(),
         StartDateTime: ko.observable(),
         StopDateTime: ko.observable(),
@@ -69,6 +70,9 @@
         }
         if (optionOrWebid.Step) {
             model.Step(optionOrWebid.Step);
+        }
+        if (optionOrWebid.Call) {
+            model.Call(optionOrWebid.Call);
         }
         if (optionOrWebid.Interval) {
             model.Interval(optionOrWebid.Interval);
