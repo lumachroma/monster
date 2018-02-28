@@ -25,6 +25,11 @@ namespace Monster.Extensions
             return CreateContentResult(cont, str, HttpStatusCode.BadRequest);
         }
 
+        public static ActionResult Forbidden(this Controller cont, string str)
+        {
+            return CreateContentResult(cont, str, HttpStatusCode.Forbidden);
+        }
+
         private static ActionResult CreateContentResult(Controller cont, string str, HttpStatusCode sc)
         {
             cont.Response.StatusCode = (int)sc;

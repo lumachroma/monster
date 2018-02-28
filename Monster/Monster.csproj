@@ -170,6 +170,8 @@
     <Compile Include="Authorizations\AuthorizeAttributeWebMvc.cs" />
     <Compile Include="Authorizations\AuthorizeAttributeWebHttp.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuctionAppController.cs" />
+    <Compile Include="Extensions\AuctionAppControllerExtension.cs" />
     <Compile Include="Firebase\AdminControllerQueryEntity.cs" />
     <Compile Include="Controllers\AuctionController.cs" />
     <Compile Include="Firebase\ControllerQueryEntityStrategy.cs" />
@@ -238,7 +240,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
+    <Content Include="Scripts\KOFBScripts\KOFBConfig.js" />
     <Content Include="Scripts\KOScripts\KODetails.js" />
+    <Content Include="Scripts\KOFBScripts\KOFBAuctionApp.js" />
     <Content Include="Scripts\KOScripts\KOPassword.js" />
     <Content Include="Scripts\KOScripts\KOSchemas\KOAuction.js" />
     <Content Include="Scripts\KOScripts\KOSchemas\KOUser.js" />
@@ -303,6 +307,9 @@
     <Content Include="Views\Auction\Remove.cshtml" />
     <Content Include="Views\Auction\Index.cshtml" />
     <Content Include="Views\Auction\Password.cshtml" />
+    <Content Include="Views\AuctionApp\Bidder.cshtml" />
+    <Content Include="Views\AuctionApp\Auctioneer.cshtml" />
+    <Content Include="Views\Shared\_Layout2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Monster</title>
+    @RenderSection("FirebaseScripts", false)
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet" />
+    <link href="http://kendo.cdn.telerik.com/2018.1.117/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="http://kendo.cdn.telerik.com/2018.1.117/styles/kendo.bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="collapse bg-warning" id="navbarHeader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                        <h4 class="text-dark">About</h4>
+                        <p class="text-muted">After the reigning emperor had been overthrown in AD 193, the entire Roman Empire was sold at auction. When computer programmer Pierre Omidyar sold a broken laser pointer for more than $14 using his online company AuctionWeb, he surely had no idea his website, now eBay, would become a Fortune 500 company. Were he alive, the Norwegian artist Evard Munch would probably be astonished to learn that his painting The Scream fetched nearly $120 million at auction.</p>
+                    </div>
+                    <div class="col-sm-4 offset-md-1 py-4">
+                        <h4 class="text-dark">Legal</h4>
+                        <ul class="list-unstyled">
+                            <li>
+                                <a href="#" class="text-muted">Conditions of Use</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-muted">Privacy Notice</a>
+                            </li>
+                            <li>
+                                <a href="#" class="text-muted">License</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar fixed-top navbar-light bg-warning box-shadow">
+            <div class="container d-flex justify-content-between">
+                <a class="navbar-brand mb-0 h1" href="/"><i class="fas fa-chess-pawn fa-lg fa-fw"></i>Monster</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main role="main">
+        <div>
+            @RenderBody()
+        </div>
+    </main>
+    <footer>
+        <div class="bg-white pt-4 pb-4">
+            <div class="container">
+                <p>&copy; @DateTime.Now.Year - Monster</p>
+            </div>
+        </div>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/moment")
+    <script src="http://kendo.cdn.telerik.com/2018.1.117/js/kendo.ui.core.min.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>
