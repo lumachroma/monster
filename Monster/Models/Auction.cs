@@ -9,6 +9,8 @@ namespace Monster.Models
     {
         public Auction()
         {
+            Contact = new Contact();
+            Bidder = new Bidder();
             Logs = new List<Log>();
             Bidders = new List<Bidder>();
         }
@@ -26,6 +28,8 @@ namespace Monster.Models
         public int Interval { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime StopDateTime { get; set; }
+        public Contact Contact { get; set; }
+        public Bidder Bidder { get; set; }
         public List<Log> Logs { get; set; }
         public List<Bidder> Bidders { get; set; }
 
@@ -35,6 +39,13 @@ namespace Monster.Models
         public DateTime CreatedDate { get; set; }
         public string Id { get; set; }
         public string WebId { get; set; }
+    }
+
+    public class Contact
+    {
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 
     public class Log
