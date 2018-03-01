@@ -17,7 +17,7 @@ namespace Monster.Extensions
             auction.Bidder = new Bidder();
             auction.Logs = new List<Log>();
             var auctionLogText = $"Auction started at RM {auction.Amount}.";
-            AddLogToAuction($"Admin/{auction.Contact.Name}", auction.Contact.Email, auctionLogText, auction);
+            AddLogToAuction("Admin", auction.Contact.Email, auctionLogText, auction);
         }
 
         internal static void EndTheAuction(this AuctionAppController self, Auction auction)
@@ -25,18 +25,18 @@ namespace Monster.Extensions
             var winner = auction.Bidder;
             auction.Status = "Ended";
             var auctionLogText = $"Auction ended at RM {auction.Amount}.";
-            AddLogToAuction($"Admin/{auction.Contact.Name}", auction.Contact.Email, auctionLogText, auction);
+            AddLogToAuction("Admin", auction.Contact.Email, auctionLogText, auction);
             auctionLogText = !winner.Nickname.IsEmpty()
                 ? $"Auction won by @{winner.Nickname}({winner.Email}) at RM {auction.Amount}."
                 : "Too bad, nobody wins the auction!";
-            AddLogToAuction($"Admin/{auction.Contact.Name}", auction.Contact.Email, auctionLogText, auction);
+            AddLogToAuction("Admin", auction.Contact.Email, auctionLogText, auction);
         }
 
         internal static void CallTheAuction(this AuctionAppController self, Auction auction)
         {
             auction.Call += 1;
             var auctionLogText = $"Call {auction.Call} for RM {auction.Amount}.";
-            AddLogToAuction($"Admin/{auction.Contact.Name}", auction.Contact.Email, auctionLogText, auction);
+            AddLogToAuction("Admin", auction.Contact.Email, auctionLogText, auction);
         }
 
         internal static void BidTheAuction(this AuctionAppController self, AuctionAppModel model, Auction auction)
@@ -47,8 +47,8 @@ namespace Monster.Extensions
             auction.Bidder = bidder;
             var auctionLogText = $"Bid for RM {model.BidAmount}.";
             AddLogToAuction(bidder.Nickname, bidder.Email, auctionLogText, auction);
-            auctionLogText = $"{bidder.Nickname} bid for RM {model.BidAmount}.";
-            AddLogToAuction($"Admin/{auction.Contact.Name}", auction.Contact.Email, auctionLogText, auction);
+            //auctionLogText = $"{bidder.Nickname} bid for RM {model.BidAmount}.";
+            //AddLogToAuction("Admin", auction.Contact.Email, auctionLogText, auction);
         }
 
         internal static bool IsBidder(this AuctionAppController self, string bidderEmail, string bidderCode,

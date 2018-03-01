@@ -83,6 +83,7 @@ namespace Monster.Controllers
                 return this.BadRequest($"Invalid amount: {auction.Amount}!");
 
             this.BidTheAuction(model, auction);
+            this.CallTheAuction(auction);
 
             var result = await _auctionContext.PutAsync(auction, key);
             return null != result
