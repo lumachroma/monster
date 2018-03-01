@@ -1,0 +1,39 @@
+﻿<div class="card mb-2">
+    <div class="card-header d-flex justify-content-between align-items-center" data-bind="with: entity">
+        <div>
+            <span data-bind="text: Title"></span>
+            <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
+        </div>
+        <div>
+            <a class="btn btn-sm btn-light" role="button" data-toggle="collapse" href="#collapse-auction-details-card-body" aria-expanded="false" aria-controls="collapse-auction-details-card-body">
+                <i class="fas fa-sort fa-fw fa-xs"></i>
+            </a>
+        </div>
+    </div>
+    <div class="collapse show" id="collapse-auction-details-card-body">
+        <div data-bind="with: entity">
+            <img class="card-img" data-bind="attr: { src: ProductImageUrl }" />
+            <div class="card-body mb-2">
+                <h6 class="card-title">
+                    <span data-bind="text: ProductName"></span>
+                </h6>
+                <p class="card-text">
+                    <span data-bind="html: ProductDescription"></span>
+                </p>
+                <a class="card-link float-right" data-bind="attr: { href: ProductUrl }" target="_blank">
+                    <small>More info...</small>
+                </a>
+            </div>
+            <div class="card-body text-white bg-secondary text-center">
+                <p>
+                    <span class="h5">RM <span data-bind="text: Number(ProductPrice()).toLocaleString('en')"></span></span><br />
+                    <small>
+                        <span data-bind="text: moment(StartDateTime()).format('MMM Do YY, h:mma')"></span>
+                        -
+                        <span data-bind="text: moment(StopDateTime()).format('MMM Do YY, h:mma')"></span>
+                    </small>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,68 +14,58 @@
     <div class="pt-4 pb-4">
         <div class="row justify-content-md-center">
             <div class="col-md-6">
-                <div class="card" data-bind="with: entity">
-                    <div class="card-header">
-                        <span data-bind="text: Title"></span>
-                        <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
+                @Html.Partial("_AuctionDetailsCard")
+                <div class="card mb-2" data-bind="with: entity">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>Auction Room for <span data-bind="text: Title"></span></span>
+                        <span>
+                            <a class="btn btn-sm btn-light" role="button" data-toggle="collapse" href="#collapse-auction-details-card-body" aria-expanded="false" aria-controls="collapse-auction-details-card-body">
+                                <i class="fas fa-sort fa-fw fa-xs"></i>
+                            </a>
+                        </span>
                     </div>
-                    <img class="card-img" data-bind="attr: { src: ProductImageUrl }" />
                     <div class="card-body">
-                        <h6 class="card-title">
-                            <span data-bind="text: ProductName"></span>
-                        </h6>
-                        <p class="card-text">
-                            <span data-bind="html: ProductDescription"></span>
-                        </p>
-                        <a class="card-link float-right" data-bind="attr: { href: ProductUrl }" target="_blank">
-                            <small>More info...</small>
-                        </a>
+                        <!--ko if: Status() === 'New'-->
+                        <button type="button" class="btn btn-secondary btn-block mt-2 mb-2" data-bind="click: $root.performStart.bind($data, $parent)">
+                            START AUCTION <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
+                        </button>
+                        <!--/ko-->
+                        <button type="button" class="btn btn-success btn-block mt-2 mb-2" data-bind="click: $root.performCall.bind($data, $parent), enable: Status() === 'Started'">
+                            <!--ko ifnot: Call() == 3-->
+                            CALL <span data-bind="text: (Call() + 1)"></span>
+                            <!--/ko-->
+                            <!--ko if: Call() == 3-->
+                            END
+                            <!--/ko-->
+                            at RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span>
+                            <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
+                        </button>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item list-group-item-dark text-center">
-                            <p class="h5">RM <span data-bind="text: Number(ProductPrice()).toLocaleString('en')"></span></p>
-                        </li>
-                        <li class="list-group-item list-group-item-primary text-center">
-                            <p class="h5"><!--ko if: Call--><small>Current Call</small> CALL <span data-bind="text: Call"></span><!--/ko--></p>
-                            <p class="h5"><small>Current Bid</small> RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span></p>
-                        </li>
-                        <li class="list-group-item">
-                            <!--ko if: Status() === 'New'-->
-                            <button type="button" class="btn btn-dark btn-lg btn-block mt-2 mb-2" data-bind="click: $root.performStart.bind($data, $parent)">
-                                START AUCTION <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
-                            </button>
-                            <!--/ko-->
-                            <!--ko if: Status() === 'Started'-->
-                            <button type="button" class="btn btn-primary btn-lg btn-block mt-2 mb-2" data-bind="click: $root.performCall.bind($data, $parent)">
-                                <!--ko ifnot: Call() == 3-->
-                                CALL <span data-bind="text: (Call() + 1)"></span>
-                                <!--/ko-->
-                                <!--ko if: Call() == 3-->
-                                END
-                                <!--/ko-->
-                                at RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span>
-                                <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
-                            </button>
-                            <!--/ko-->
-                        </li>
-                        <li class="list-group list-group-item list-group-item-light p-2">
-                            <ul class="list-unstyled" data-bind="foreach: Logs">
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <samp>
+                    <div class="card-body bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small>Current Call</small>
+                                <p class="h5">&nbsp;<!--ko if: Call-->CALL <span data-bind="text: Call"></span><!--/ko--></p>
+                            </div>
+                            <div>
+                                <small>Current Bid</small>
+                                <p class="h5">&nbsp;RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled" data-bind="foreach: Logs">
+                            <li>
+                                <samp>
+                                    <small>
+                                        <i class="far fa-clock fa-fw"></i><span data-bind="text: moment(Timestamp()).format('hh:mma')"></span>
                                         <abbr data-bind="attr: { title: Email }">&#x40;<span data-bind="text: Nickname"></span></abbr>:
                                         <span data-bind="text: Text"></span>
-                                    </samp>
-                                    <samp>
-                                        <small>
-                                            <i class="far fa-clock fa-fw"></i><span data-bind="text: moment(Timestamp()).format('hh:mm A')"></span>
-                                        </small>
-                                    </samp>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-auto">
+                                    </small>
+                                </samp>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -95,7 +85,7 @@
                 function(snapshot) {
                     console.log(snapshot.key);
                     console.log(snapshot.val());
-                    modelView.updateDetails(snapshot.val());
+                    modelView.updateAuctioneerDetails(snapshot.val());
                 });
         });
     </script>

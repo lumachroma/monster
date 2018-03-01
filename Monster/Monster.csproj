@@ -310,6 +310,7 @@
     <Content Include="Views\AuctionApp\Bidder.cshtml" />
     <Content Include="Views\AuctionApp\Auctioneer.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
+    <Content Include="Views\AuctionApp\_AuctionDetailsCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

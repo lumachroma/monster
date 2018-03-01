@@ -19,7 +19,12 @@
         thisObj.redirect = redirect;
         thisObj.entity(new KoAuction(guid())); //??
     },
-    updateDetails: function (auction) {
+    updateAuctioneerDetails: function (auction) {
+        var thisObj = this;
+        thisObj.entity(new KoAuction(auction));
+        thisObj.entity().Logs.reverse();
+    },
+    updateBidderDetails: function (auction) {
         var thisObj = this;
         thisObj.entity(new KoAuction(auction));
         thisObj.entity().Logs.reverse();

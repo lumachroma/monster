@@ -14,93 +14,85 @@
     <div class="pt-4 pb-4">
         <div class="row justify-content-md-center">
             <div class="col-md-6">
-                <div class="card" data-bind="with: entity">
-                    <div class="card-header">
-                        <span data-bind="text: Title"></span>
-                        <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
+                @Html.Partial("_AuctionDetailsCard")
+                <div class="card mb-2" data-bind="with: entity">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <span>Auction Room for <span data-bind="text: Title"></span></span>
+                        <span>
+                            <a class="btn btn-sm btn-light" role="button" data-toggle="collapse" href="#collapse-auction-details-card-body" aria-expanded="false" aria-controls="collapse-auction-details-card-body">
+                                <i class="fas fa-sort fa-fw fa-xs"></i>
+                            </a>
+                        </span>
                     </div>
-                    <img class="card-img" data-bind="attr: { src: ProductImageUrl }" />
+                    <!--ko if: $root.isAuth-->
                     <div class="card-body">
-                        <h6 class="card-title">
-                            <span data-bind="text: ProductName"></span>
-                        </h6>
-                        <p class="card-text">
-                            <span data-bind="html: ProductDescription"></span>
-                        </p>
-                        <a class="card-link float-right" data-bind="attr: { href: ProductUrl }" target="_blank">
-                            <small>More info...</small>
-                        </a>
+                        <div class="alert alert-success text-center" role="alert">
+                            <small>
+                                Bid as
+                                <strong>&#x40;<span data-bind="text: $root.bidderNickname"></span></strong>
+                                &#40;<span data-bind="text: $root.bidderEmail"></span>&#41;
+                            </small>
+                        </div>
+                        <button type="button" class="btn btn-success btn-block mt-2 mb-2" data-bind="click: $root.performBid.bind($data, $parent), enable: Status() === 'Started'">
+                            BID RM <span data-bind="text: Number(Amount() + Step()).toLocaleString('en')"></span>
+                            <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
+                        </button>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item list-group-item-dark text-center">
-                            <p class="h5">RM <span data-bind="text: Number(ProductPrice()).toLocaleString('en')"></span></p>
-                        </li>
-                        <li class="list-group-item list-group-item-primary text-center">
-                            <p class="h5"><!--ko if: Call--><small>Current Call</small> CALL <span data-bind="text: Call"></span><!--/ko--></p>
-                            <p class="h5"><small>Current Bid</small> RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span></p>
-                        </li>
-                        <!--ko if: $root.isAuth-->
-                        <li class="list-group-item">
-                            <div class="alert alert-info text-center" role="alert">
-                                <small>
-                                    Bid as
-                                    <strong>&#x40;<span data-bind="text: $root.bidderNickname"></span></strong>
-                                    &#40;<span data-bind="text: $root.bidderEmail"></span>&#41;
-                                </small>
-                            </div>
-                            <button type="button" class="btn btn-primary btn-lg btn-block mt-2 mb-2" data-bind="click: $root.performBid.bind($data, $parent)">
-                                BID RM <span data-bind="text: Number(Amount() + Step()).toLocaleString('en')"></span>
-                                <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
+                    <!--/ko-->
+                    <!--ko ifnot: $root.isAuth-->
+                    <div class="card-body">
+                        <div class="alert alert-success" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
                             </button>
-                        </li>
-                        <!--/ko-->
-                        <!--ko ifnot: $root.isAuth-->
-                        <li class="list-group-item">
-                            <div class="alert alert-info" role="alert">
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                                <small>Start <strong>bidding</strong> by verifying your <ins>bidder email</ins> and <ins>bidder code</ins>!</small>
-                            </div>
-                            <button type="button" class="btn btn-primary btn-lg btn-block mt-2 mb-2" disabled="disabled">BID RM <span data-bind="text: Number(Amount() + Step()).toLocaleString('en')"></span></button>
-                            <form class="mt-2 mb-2">
-                                <div class="form-row align-items-center">
-                                    <div class="col-6">
-                                        <label class="sr-only">Bidder Email</label>
-                                        <input class="form-control mb-2" type="text" placeholder="bidder email" data-bind="value: $root.bidderEmail" />
-                                    </div>
-                                    <div class="col-3">
-                                        <label class="sr-only">Bidder Code</label>
-                                        <input class="form-control mb-2" type="password" placeholder="bidder code" data-bind="value: $root.bidderCode" />
-                                    </div>
-                                    <div class="col-3">
-                                        <a class="btn btn-light btn-block mb-2" data-bind="click: $root.verifyBidder.bind($data, $parent)">
-                                            Verify
-                                            <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
-                                        </a>
-                                    </div>
+                            <small>Start <strong>bidding</strong> by entering and verifying your <ins>bidder email</ins> and <ins>bidder code</ins>!</small>
+                        </div>
+                        <button type="button" class="btn btn-success btn-block mt-2 mb-2" disabled="disabled">BID RM <span data-bind="text: Number(Amount() + Step()).toLocaleString('en')"></span></button>
+                        <form class="mt-2 mb-2">
+                            <div class="form-row align-items-center">
+                                <div class="col-6">
+                                    <label class="sr-only">Bidder Email</label>
+                                    <input class="form-control mb-2" type="text" placeholder="bidder email" data-bind="value: $root.bidderEmail" />
                                 </div>
-                            </form>
-                        </li>
-                        <!--/ko-->
-                        <li class="list-group list-group-item list-group-item-light p-2">
-                            <ul class="list-unstyled" data-bind="foreach: Logs">
-                                <li class="d-flex justify-content-between align-items-center">
-                                    <samp>
+                                <div class="col-3">
+                                    <label class="sr-only">Bidder Code</label>
+                                    <input class="form-control mb-2" type="password" placeholder="bidder code" data-bind="value: $root.bidderCode" />
+                                </div>
+                                <div class="col-3">
+                                    <button type="button" class="btn btn-secondary btn-block mb-2" data-bind="click: $root.verifyBidder.bind($data, $parent)">
+                                        Verify
+                                        <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!--/ko-->
+                    <div class="card-body bg-light">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <small>Current Call</small>
+                                <p class="h5">&nbsp;<!--ko if: Call-->CALL <span data-bind="text: Call"></span><!--/ko--></p>
+                            </div>
+                            <div>
+                                <small>Current Bid</small>
+                                <p class="h5">&nbsp;RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled" data-bind="foreach: Logs">
+                            <li>
+                                <samp>
+                                    <small>
+                                        <i class="far fa-clock fa-fw"></i><span data-bind="text: moment(Timestamp()).format('hh:mma')"></span>
                                         <abbr data-bind="attr: { title: Email }">&#x40;<span data-bind="text: Nickname"></span></abbr>:
                                         <span data-bind="text: Text"></span>
-                                    </samp>
-                                    <samp>
-                                        <small>
-                                            <i class="far fa-clock fa-fw"></i><span data-bind="text: moment(Timestamp()).format('hh:mm A')"></span>
-                                        </small>
-                                    </samp>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-auto">
+                                    </small>
+                                </samp>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -113,15 +105,16 @@
     <script src="~/Scripts/KOScripts/KOSchemas/KOAuction.js"></script>
     <script src="~/Scripts/KOFBScripts/KOFBAuctionApp.js"></script>
     <script>
-        $(function() {
+        $(function () {
             ko.applyBindings(modelView);
             modelView.initDetails("@ViewBag.Key", "AuctionApp");
             auctionsRef.child("@ViewBag.Key").on('value',
                 function(snapshot) {
                     console.log(snapshot.key);
                     console.log(snapshot.val());
-                    modelView.updateDetails(snapshot.val());
+                    modelView.updateBidderDetails(snapshot.val());
                 });
+            //$('#collapse-auction-details-card-body').collapse('show');
         });
     </script>
 }
