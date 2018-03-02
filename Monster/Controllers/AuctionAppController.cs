@@ -75,6 +75,8 @@ namespace Monster.Controllers
                 return this.NotFound($"{key} not found!");
             if (!this.IsBidder(model.BidderEmail, model.BidderCode, auction.Bidders))
                 return this.Forbidden($"{model.BidderEmail} not verified!");
+            if (model.BidderEmail == auction.Bidder.Email && model.BidderCode == auction.Bidder.Code)
+                return this.BadRequest($"Invalid bid: {auction.Bidder.Email} is higest bidder!");
             if (auction.Status != "Started")
                 return this.BadRequest($"Invalid status: {auction.Status}!");
             if (auction.Call > 3)

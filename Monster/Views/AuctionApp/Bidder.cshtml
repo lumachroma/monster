@@ -15,7 +15,7 @@
         <div class="row justify-content-md-center">
             <div class="col-md-6">
                 @Html.Partial("_AuctionDetailsCard")
-                <div class="card mb-2" data-bind="with: entity">
+                <div class="card mb-3 box-shadow" data-bind="with: entity">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <span>Auction Room for <span data-bind="text: Title"></span></span>
                         <span>
@@ -25,18 +25,34 @@
                         </span>
                     </div>
                     <!--ko if: $root.isAuth-->
-                    <div class="card-body">
-                        <div class="alert alert-success text-center" role="alert">
+                    <div class="card-body text-center">
+                        <div class="alert alert-success" role="alert">
                             <small>
                                 Bid as
                                 <strong>&#x40;<span data-bind="text: $root.bidderNickname"></span></strong>
                                 &#40;<span data-bind="text: $root.bidderEmail"></span>&#41;
                             </small>
+                            <br />
+                            <!--ko if: Bidder().Nickname-->
+                            <small>
+                                Highest bidder now is
+                                <!--ko if: Bidder().Nickname() === $root.bidderNickname() -->
+                                you! <i class="fas fa-star fa-fw"></i>
+                                <!--/ko-->
+                                <!--ko ifnot: Bidder().Nickname() === $root.bidderNickname() -->
+                                <strong>&#x40;<span data-bind="text: Bidder().Nickname"></span></strong>
+                                &#40;<span data-bind="text: Bidder().Email"></span>&#41;
+                                <!--/ko-->
+                            </small>
+                            <!--/ko-->
                         </div>
                         <button type="button" class="btn btn-success btn-block mt-2 mb-2" data-bind="click: $root.performBid.bind($data, $parent), enable: Status() === 'Started'">
                             BID RM <span data-bind="text: Number(Amount() + Step()).toLocaleString('en')"></span>
                             <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
                         </button>
+                        <span class="card-text">
+                            <small class="text-muted">&#40;Increment bid for RM <span data-bind="html: Step().toLocaleString('en')"></span>&#41;</small>
+                        </span>
                     </div>
                     <!--/ko-->
                     <!--ko ifnot: $root.isAuth-->
@@ -68,6 +84,7 @@
                         </form>
                     </div>
                     <!--/ko-->
+                    <!--ko if: Status() === 'Started'-->
                     <div class="card-body bg-light">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
@@ -80,6 +97,19 @@
                             </div>
                         </div>
                     </div>
+                    <!--/ko-->
+                    <!--ko if: Status() === 'Ended'-->
+                    <div class="card-body bg-danger text-center">
+                        <small>Auction ended at RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span></small>
+                        <br />
+                        <small>
+                            Auction won by
+                            <strong>&#x40;<span data-bind="text: Bidder().Nickname"></span></strong>
+                            &#40;<span data-bind="text: Bidder().Email"></span>&#41;
+                        </small>
+                        <span class="text-warning"><i class="fas fa-trophy fa-fw"></i></span>
+                    </div>
+                    <!--/ko-->
                     <div class="card-body">
                         <ul class="list-unstyled" data-bind="foreach: Logs">
                             <li>
@@ -105,7 +135,7 @@
     <script src="~/Scripts/KOScripts/KOSchemas/KOAuction.js"></script>
     <script src="~/Scripts/KOFBScripts/KOFBAuctionApp.js"></script>
     <script>
-        $(function () {
+        $(function() {
             ko.applyBindings(modelView);
             modelView.initDetails("@ViewBag.Key", "AuctionApp");
             auctionsRef.child("@ViewBag.Key").on('value',
@@ -114,7 +144,6 @@
                     console.log(snapshot.val());
                     modelView.updateBidderDetails(snapshot.val());
                 });
-            //$('#collapse-auction-details-card-body').collapse('show');
         });
     </script>
 }

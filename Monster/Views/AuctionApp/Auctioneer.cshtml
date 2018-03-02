@@ -15,7 +15,7 @@
         <div class="row justify-content-md-center">
             <div class="col-md-6">
                 @Html.Partial("_AuctionDetailsCard")
-                <div class="card mb-2" data-bind="with: entity">
+                <div class="card mb-3 box-shadow" data-bind="with: entity">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <span>Auction Room for <span data-bind="text: Title"></span></span>
                         <span>
@@ -24,23 +24,27 @@
                             </a>
                         </span>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body text-center">
+                        <!--ko if: Bidder().Nickname-->
+                        <div class="alert alert-success" role="alert">
+                            <small>
+                                Highest bidder now is
+                                <strong>&#x40;<span data-bind="text: Bidder().Nickname"></span></strong>
+                                &#40;<span data-bind="text: Bidder().Email"></span>&#41;
+                            </small>
+                        </div>
+                        <!--/ko-->
                         <!--ko if: Status() === 'New'-->
                         <button type="button" class="btn btn-secondary btn-block mt-2 mb-2" data-bind="click: $root.performStart.bind($data, $parent)">
                             START AUCTION <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
                         </button>
                         <!--/ko-->
                         <button type="button" class="btn btn-success btn-block mt-2 mb-2" data-bind="click: $root.performCall.bind($data, $parent), enable: Status() === 'Started'">
-                            <!--ko ifnot: Call() == 3-->
-                            CALL <span data-bind="text: (Call() + 1)"></span>
-                            <!--/ko-->
-                            <!--ko if: Call() == 3-->
-                            END
-                            <!--/ko-->
-                            at RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span>
+                            CALL at RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span>
                             <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
                         </button>
                     </div>
+                    <!--ko if: Status() === 'Started'-->
                     <div class="card-body bg-light">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
@@ -53,6 +57,19 @@
                             </div>
                         </div>
                     </div>
+                    <!--/ko-->
+                    <!--ko if: Status() === 'Ended'-->
+                    <div class="card-body bg-danger text-center">
+                        <small>Auction ended at RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span></small>
+                        <br />
+                        <small>
+                            Auction won by
+                            <strong>&#x40;<span data-bind="text: Bidder().Nickname"></span></strong>
+                            &#40;<span data-bind="text: Bidder().Email"></span>&#41;
+                        </small>
+                        <span class="text-warning"><i class="fas fa-trophy fa-fw"></i></span>
+                    </div>
+                    <!--/ko-->
                     <div class="card-body">
                         <ul class="list-unstyled" data-bind="foreach: Logs">
                             <li>
