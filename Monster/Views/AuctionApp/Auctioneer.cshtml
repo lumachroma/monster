@@ -7,7 +7,6 @@
 @section FirebaseScripts
 {
     <script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
-    <script src="~/Scripts/KOFBScripts/KOFBConfig.js"></script>
 }
 
 <div class="container">
@@ -96,9 +95,7 @@
 
 @section scripts
 {
-    <script src="~/Scripts/KOScripts/KOShared.js"></script>
-    <script src="~/Scripts/KOScripts/KOSchemas/KOAuction.js"></script>
-    <script src="~/Scripts/KOFBScripts/KOFBAuctionApp.js"></script>
+    @Scripts.Render("~/bundles/ko-firebase-scripts")
     <script>
         $(function() {
             ko.applyBindings(modelView);
