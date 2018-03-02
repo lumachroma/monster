@@ -150,7 +150,7 @@ namespace Monster.Controllers
         {
             FirebaseObject<Auction> result = null;
             if (IsAdministrator()) result = await _adminAuctionQuery.Post(auction);
-            else await _userAuctionQuery.Post(auction);
+            else result = await _userAuctionQuery.Post(auction);
             return null != result
                 ? this.Ok(JsonConvert.SerializeObject(result))
                 : this.InternalServerError(string.Empty);
