@@ -11,6 +11,8 @@
     bidderCode: ko.observable(),
     bidderNickname: ko.observable(),
     executeEndpointLogic: function () { },
+    callTimerIntervalID: undefined,
+    callTimerElapse: ko.observable(0),
     initDetails: function (id, controller, endpoint = undefined, redirect = undefined) {
         var thisObj = this;
         thisObj.id = id;
@@ -23,11 +25,35 @@
         var thisObj = this;
         thisObj.entity(new KoAuction(auction));
         thisObj.entity().Logs.reverse();
+        if (null != thisObj.callTimerIntervalID) thisObj.stopCallTimer();
+        thisObj.resetCallTimer(auction);
     },
     updateBidderDetails: function (auction) {
         var thisObj = this;
         thisObj.entity(new KoAuction(auction));
         thisObj.entity().Logs.reverse();
+    },
+    resetCallTimer: function (auction) {
+        var thisObj = this;
+        if (auction.Status === "Started") {
+            thisObj.callTimerIntervalID = setInterval(function () {
+                var startTime = moment(auction.ChangedDate).valueOf();
+                var elapsedTime = Date.now() - startTime;
+                var elapsedTimeInSeconds = (elapsedTime / 1000).toFixed(2);
+                thisObj.callTimerElapse(elapsedTimeInSeconds);
+                if (elapsedTimeInSeconds > auction.Interval) {
+                    console.log(`${elapsedTimeInSeconds}: Time's up. Call nhawww!!!`);
+                    thisObj.stopCallTimer();
+                    thisObj.performCall(thisObj);
+                }
+            },
+                1000);
+        }
+    },
+    stopCallTimer: function () {
+        var thisObj = this;
+        clearInterval(thisObj.callTimerIntervalID);
+        thisObj.callTimerIntervalID = undefined;
     },
     verifyBidder: function (thisObj, entity) {
         //console.log(thisObj);

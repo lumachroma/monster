@@ -43,6 +43,11 @@
                             CALL at RM <span data-bind="text: Number(Amount()).toLocaleString('en')"></span>
                             <i class="fas fa-spinner fa-pulse fa-fw" data-bind="visible: $root.isBusy"></i>
                         </button>
+                        <p class="card-text">
+                            <small>Call Timer</small><br />
+                            <span class="display-4 text-muted" data-bind="text: $root.callTimerElapse"></span><br />
+                            <small>secs of &#40;<strong><span data-bind="text: Interval"></span></strong> secs interval</small>&#41;
+                        </p>
                     </div>
                     <!--ko if: Status() === 'Started'-->
                     <div class="card-body bg-light">
