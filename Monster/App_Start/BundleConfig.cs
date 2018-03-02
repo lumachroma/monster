@@ -29,6 +29,20 @@ namespace Monster
             bundles.Add(new ScriptBundle("~/bundles/moment").Include(
                         "~/Scripts/moment*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ko-scripts-all").Include(
+                        "~/Scripts/KOScripts/KOShared.js",
+                        "~/Scripts/KOScripts/KOAll.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ko-scripts-details").Include(
+                        "~/Scripts/KOScripts/KOShared.js",
+                        "~/Scripts/KOScripts/KOSchemas/KO*",
+                        "~/Scripts/KOScripts/KODetails.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/ko-scripts-password").Include(
+                        "~/Scripts/KOScripts/KOShared.js",
+                        "~/Scripts/KOScripts/KOSchemas/KOUser.js",
+                        "~/Scripts/KOScripts/KOPassword.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",
                         "~/Content/site.css"));
