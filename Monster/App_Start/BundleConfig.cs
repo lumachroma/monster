@@ -43,6 +43,12 @@ namespace Monster
                         "~/Scripts/KOScripts/KOSchemas/KOUser.js",
                         "~/Scripts/KOScripts/KOPassword.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/ko-firebase-scripts").Include(
+                        "~/Scripts/KOScripts/KOShared.js",
+                        "~/Scripts/KOScripts/KOSchemas/KOAuction.js",
+                        "~/Scripts/KOFBScripts/KOFBConfig.js",
+                        "~/Scripts/KOFBScripts/KOFBAuctionApp.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                         "~/Content/bootstrap.css",
                         "~/Content/site.css"));
