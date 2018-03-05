@@ -13,7 +13,7 @@
     executeEndpointLogic: function () { },
     callTimerIntervalID: undefined,
     callTimerElapse: ko.observable(0),
-    initDetails: function (id, controller, endpoint = undefined, redirect = undefined) {
+    initDetails: function (id, controller, endpoint, redirect) {
         var thisObj = this;
         thisObj.id = id;
         thisObj.controller = controller;
@@ -42,7 +42,7 @@
                 var elapsedTimeInSeconds = (elapsedTime / 1000).toFixed(2);
                 thisObj.callTimerElapse(elapsedTimeInSeconds);
                 if (elapsedTimeInSeconds > auction.Interval) {
-                    console.log(`${elapsedTimeInSeconds}: Time's up. Call nhawww!!!`);
+                    console.log(elapsedTimeInSeconds + ": Time's up. Call nhawww!!!");
                     thisObj.stopCallTimer();
                     thisObj.performCall(thisObj);
                 }
@@ -59,7 +59,7 @@
         //console.log(thisObj);
         //console.log(entity);
         var data = JSON.stringify({ "BidderEmail": thisObj.bidderEmail(), "BidderCode": thisObj.bidderCode() });
-        var endpoint = thisObj.buildEndpointUrl(`/${thisObj.controller}/VerifyBidder/${thisObj.id}`);
+        var endpoint = thisObj.buildEndpointUrl("/" + thisObj.controller + "/VerifyBidder/" + thisObj.id);
         thisObj.executeEndpointLogic = function (result) {
             thisObj.isAuth(result.Auth);
             thisObj.bidderNickname(result.Nickname);
@@ -75,7 +75,7 @@
             "BidderCode": thisObj.bidderCode(),
             "BidAmount": bidAmount
         });
-        var endpoint = thisObj.buildEndpointUrl(`/${thisObj.controller}/PerformBid/${thisObj.id}`);
+        var endpoint = thisObj.buildEndpointUrl("/" + thisObj.controller + "/PerformBid/" + thisObj.id);
         thisObj.executeEndpointLogic = function () { };
         thisObj.defultOperationEndpoint(data, endpoint, "POST", thisObj.redirect);
     },
@@ -83,7 +83,7 @@
         //console.log(thisObj);
         //console.log(entity);
         var data = JSON.stringify({});
-        var endpoint = thisObj.buildEndpointUrl(`/${thisObj.controller}/PerformStart/${thisObj.id}`);
+        var endpoint = thisObj.buildEndpointUrl("/" + thisObj.controller + "/PerformStart/" + thisObj.id);
         thisObj.executeEndpointLogic = function () { };
         thisObj.defultOperationEndpoint(data, endpoint, "POST", thisObj.redirect);
     },
@@ -91,7 +91,7 @@
         //console.log(thisObj);
         //console.log(entity);
         var data = JSON.stringify({});
-        var endpoint = thisObj.buildEndpointUrl(`/${thisObj.controller}/PerformCall/${thisObj.id}`);
+        var endpoint = thisObj.buildEndpointUrl("/" + thisObj.controller + "/PerformCall/" + thisObj.id);
         thisObj.executeEndpointLogic = function () { };
         thisObj.defultOperationEndpoint(data, endpoint, "POST", thisObj.redirect);
     },

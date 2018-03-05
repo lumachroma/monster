@@ -7,20 +7,16 @@
     isBusy: ko.observable(false),
     entity: ko.observable(),
     kendoCreateComponents: function () { },
-    viewDetails: function (model,
-        action,
-        id = undefined,
-        endpoint = undefined,
-        redirect = undefined) {
+    viewDetails: function (model, action, id, endpoint, redirect) {
         var thisObj = this;
         thisObj.model = model;
         thisObj.action = action.toLowerCase();
         thisObj.id = id;
         thisObj.endpoint = endpoint;
         thisObj.redirect = redirect;
-        var koModel = `Ko${model}`;
-        var endpointUrl = thisObj.buildEndpointUrl(`/${thisObj.model}/Get/${thisObj.id}`);
-        var redirectUrl = thisObj.buildRedirectUrl(`/${thisObj.model}`);
+        var koModel = "Ko" + model;
+        var endpointUrl = thisObj.buildEndpointUrl("/" + thisObj.model + "/Get/" + thisObj.id);
+        var redirectUrl = thisObj.buildRedirectUrl("/" + thisObj.model);
         if (null != id) {
             thisObj.isBusy(true);
             get(endpointUrl, true, {})
@@ -43,22 +39,22 @@
     },
     createEntity: function (thisObj) {
         var data = ko.toJSON(thisObj.entity);
-        var endpoint = thisObj.buildEndpointUrl(`/${thisObj.model}/Post`);
-        var redirect = thisObj.buildRedirectUrl(`/${thisObj.model}`);
+        var endpoint = thisObj.buildEndpointUrl("/" + thisObj.model + "/Post");
+        var redirect = thisObj.buildRedirectUrl("/" + thisObj.model);
         var msg = "Successfully added.";
         thisObj.defultOperationEndpoint(data, endpoint, "POST", redirect, msg);
     },
     editEntity: function (thisObj) {
         var data = ko.toJSON(thisObj.entity);
-        var endpoint = thisObj.buildEndpointUrl(`/${thisObj.model}/Put/${thisObj.id}`);
-        var redirect = thisObj.buildRedirectUrl(`/${thisObj.model}`);
+        var endpoint = thisObj.buildEndpointUrl("/" + thisObj.model + "/Put/" + thisObj.id);
+        var redirect = thisObj.buildRedirectUrl("/" + thisObj.model);
         var msg = "Successfully edited.";
         thisObj.defultOperationEndpoint(data, endpoint, "PUT", redirect, msg);
     },
     deleteEntity: function (thisObj) {
         var data = ko.toJSON(thisObj.entity);
-        var endpoint = thisObj.buildEndpointUrl(`/${thisObj.model}/Delete/${thisObj.id}`);
-        var redirect = thisObj.buildRedirectUrl(`/${thisObj.model}`);
+        var endpoint = thisObj.buildEndpointUrl("/" + thisObj.model + "/Delete/" + thisObj.id);
+        var redirect = thisObj.buildRedirectUrl("/" + thisObj.model);
         var msg = "Successfully deleted.";
         thisObj.defultOperationEndpoint(data, endpoint, "DELETE", redirect, msg);
     },

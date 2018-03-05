@@ -3,12 +3,12 @@
     endpoint: undefined,
     isBusy: ko.observable(false),
     list: ko.observableArray([]),
-    viewAll: function (model, endpoint = undefined) {
+    viewAll: function (model, endpoint) {
         var thisObj = this;
         thisObj.model = model;
         thisObj.endpoint = endpoint;
         thisObj.isBusy(true);
-        var endpointUrl = thisObj.buildEndpointUrl(`/${thisObj.model}/All`);
+        var endpointUrl = thisObj.buildEndpointUrl("/" + thisObj.model + "/All");
         get(endpointUrl, true, {})
             .done(function (result) {
                 console.log(result);
