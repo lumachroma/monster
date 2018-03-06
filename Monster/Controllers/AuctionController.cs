@@ -36,7 +36,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Dashboard()
         {
             ViewBag.Message = "The dashboard page.";
-            ViewBag.IsAdministrator = IsAdministrator();
+            ViewBag.IsAdministrator = this.IsAdministrator();
 
             var key = ((ClaimsIdentity)HttpContext.User.Identity).Claims
                 .Where(c => c.Type == ClaimTypes.NameIdentifier)
@@ -117,7 +117,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> All()
         {
             IReadOnlyCollection<FirebaseObject<Auction>> results;
-            if (IsAdministrator()) results = await _adminAuctionQuery.All();
+            if (this.IsAdministrator()) results = await _adminAuctionQuery.All();
             else results = await _userAuctionQuery.All();
             return this.Ok(JsonConvert.SerializeObject(results));
         }
@@ -127,7 +127,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Some(string key)
         {
             IReadOnlyCollection<FirebaseObject<Auction>> results;
-            if (IsAdministrator()) results = await _adminAuctionQuery.Some(key);
+            if (this.IsAdministrator()) results = await _adminAuctionQuery.Some(key);
             else results = await _userAuctionQuery.Some(key);
             return this.Ok(JsonConvert.SerializeObject(results));
         }
@@ -137,7 +137,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Get(string key)
         {
             Auction result;
-            if (IsAdministrator()) result = await _adminAuctionQuery.Get(key);
+            if (this.IsAdministrator()) result = await _adminAuctionQuery.Get(key);
             else result = await _userAuctionQuery.Get(key);
             return null != result
                 ? this.Ok(JsonConvert.SerializeObject(result))
@@ -149,7 +149,7 @@ namespace Monster.Controllers
         public async Task<ActionResult> Post(Auction auction)
         {
             FirebaseObject<Auction> result = null;
-            if (IsAdministrator()) result = await _adminAuctionQuery.Post(auction);
+            if (this.IsAdministrator()) result = await _adminAuctionQuery.Post(auction);
             else result = await _userAuctionQuery.Post(auction);
             return null != result
                 ? this.Ok(JsonConvert.SerializeObject(result))
@@ -164,7 +164,7 @@ namespace Monster.Controllers
             if (null == existing) return this.NotFound($"{key} not found!");
 
             Auction result;
-            if (IsAdministrator()) result = await _adminAuctionQuery.Put(key, auction);
+            if (this.IsAdministrator()) result = await _adminAuctionQuery.Put(key, auction);
             else result = await _userAuctionQuery.Put(key, auction);
             return null != result
                 ? this.Ok(JsonConvert.SerializeObject(new FirebaseObject<Auction>(key, auction)))
@@ -178,17 +178,9 @@ namespace Monster.Controllers
             var existing = await _auctionContext.GetByKeyAsync(key);
             if (null == existing) return this.NotFound($"{key} not found!");
 
-            if (IsAdministrator()) await _adminAuctionQuery.Delete(key);
+            if (this.IsAdministrator()) await _adminAuctionQuery.Delete(key);
             else await _userAuctionQuery.Delete(key);
             return this.Ok(JsonConvert.SerializeObject(new FirebaseObject<Auction>(key, auction)));
-        }
-
-        private bool IsAdministrator()
-        {
-            return HttpContext.User.IsInRole("Administrator") ||
-                   HttpContext.User.IsInRole("administrator") ||
-                   HttpContext.User.IsInRole("Admin") ||
-                   HttpContext.User.IsInRole("admin");
         }
     }
 }
