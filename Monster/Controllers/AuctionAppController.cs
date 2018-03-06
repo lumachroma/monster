@@ -99,13 +99,14 @@ namespace Monster.Controllers
         public async Task<ActionResult> PerformCall(string key)
         {
             var auction = await _auctionContext.GetByKeyAsync(key);
+            if (!this.IsAdministrator() && this.GetCurrentUser() != auction.CreatedBy)
+                return this.Forbidden("Invalid autioneer");
             if (null == auction)
                 return this.NotFound($"{key} not found!");
             if (auction.Status != "Started")
                 return this.BadRequest($"Invalid status: {auction.Status}!");
             if (auction.Call > 3)
                 return this.BadRequest($"Invalid call: {auction.Call}!");
-            //TODO: Check for Auction Ownership for non admin
 
             if (auction.Call == 3) this.EndTheAuction(auction);
             else this.CallTheAuction(auction);
@@ -122,11 +123,12 @@ namespace Monster.Controllers
         public async Task<ActionResult> PerformStart(string key)
         {
             var auction = await _auctionContext.GetByKeyAsync(key);
+            if (!this.IsAdministrator() && this.GetCurrentUser() != auction.CreatedBy)
+                return this.Forbidden("Invalid autioneer");
             if (null == auction)
                 return this.NotFound($"{key} not found!");
             if (auction.Status != "New")
                 return this.BadRequest($"Invalid status: {auction.Status}!");
-            //TODO: Check for Auction Ownership for non admin
 
             this.StartTheAuction(auction);
 
