@@ -37,7 +37,7 @@
         var thisObj = this;
         if (auction.Status === "Started") {
             thisObj.callTimerIntervalID = setInterval(function () {
-                var startTime = moment(auction.ChangedDate).valueOf();
+                var startTime = Date.now();//moment(auction.ChangedDate).valueOf();
                 var elapsedTime = Date.now() - startTime;
                 var elapsedTimeInSeconds = (elapsedTime / 1000).toFixed(2);
                 thisObj.callTimerElapse(elapsedTimeInSeconds);
@@ -46,8 +46,7 @@
                     thisObj.stopCallTimer();
                     thisObj.performCall(thisObj);
                 }
-            },
-                1000);
+            }, 1000);
         }
     },
     stopCallTimer: function () {
