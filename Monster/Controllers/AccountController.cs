@@ -86,7 +86,7 @@ namespace Monster.Controllers
                     HttpContext.GetOwinContext().Authentication.SignIn(identity);
 
                     if (Url.IsLocalUrl(returnUrl)) return Redirect(returnUrl);
-                    return RedirectToAction("Dashboard", "Auction");
+                    return RedirectToAction("Dashboard", "AuctionApp");
                 }
             }
 

@@ -15,7 +15,7 @@
     <div class="pt-4 pb-4">
         @Html.Partial("_DetailsText")
         <button class="btn btn-danger" data-bind="click: deleteEntity">Remove</button>
-        <a class="btn btn-light" href="/Auction/Dashboard">Cancel</a>
+        <a class="btn btn-light" href="/Auction">Cancel</a>
     </div>
 </div>
 @section scripts
@@ -24,7 +24,7 @@
     <script>
     $(function() {
         ko.applyBindings(modelView);
-        modelView.viewDetails("Auction", "@ViewBag.Title", "@ViewBag.Key", undefined, "/Auction/Dashboard");
+        modelView.viewDetails("Auction", "@ViewBag.Title", "@ViewBag.Key");
     });
     </script>
 }

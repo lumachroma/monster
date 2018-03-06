@@ -21,8 +21,8 @@
                         <a class="btn btn-secondary" href="/User" title="Users"><i class="fas fa-users fa-fw"></i></a>
                         <a class="btn btn-secondary" href="/User/Roles" title="Roles"><i class="fas fa-universal-access fa-fw"></i></a>
                     }
-                    <a class="btn btn-secondary" href="/Auction/Password/@Model.Key" title="Set Password"><i class="fas fa-key fa-fw"></i></a>
-                    <a class="btn btn-secondary" href="/Auction/Bio/@Model.Key" title="Edit"><i class="fas fa-edit fa-fw"></i></a>
+                    <a class="btn btn-secondary" href="/AuctionApp/Password/@Model.Key" title="Set Password"><i class="fas fa-key fa-fw"></i></a>
+                    <a class="btn btn-secondary" href="/AuctionApp/Bio/@Model.Key" title="Edit"><i class="fas fa-edit fa-fw"></i></a>
                 </div>
                 <ul class="list-group box-shadow">
                     <li class="list-group-item">
@@ -68,8 +68,8 @@
                                                 <td><span data-bind="text: moment(Object.StartDateTime).format('YYYY-MM-DD hh:mm A')"></span></td>
                                                 <td>
                                                     <a class="btn btn-sm btn-light" title="Details" data-bind="attr: { href: '/Auction/Details/' + Key }"><i class="fas fa-search fa-xs fa-fw"></i></a>
-                                                    <a class="btn btn-sm btn-light" title="Auctioneer" data-bind="attr: { href: '/AuctionApp/Auctioneer/' + Key }"><i class="fas fa-gavel fa-xs fa-fw"></i><i class="fas fa-user-circle fa-xs fa-fw"></i></a>
-                                                    <a class="btn btn-sm btn-light" title="Bidder" data-bind="attr: { href: '/AuctionApp/Bidder/' + Key }"><i class="fas fa-gavel fa-xs fa-fw"></i><i class="far fa-user-circle fa-xs fa-fw"></i></a>
+                                                    <a class="btn btn-sm btn-light" title="Auctioneer" data-bind="attr: { href: '/AuctionApp/Auctioneer/' + Key }" target="_blank"><i class="fas fa-gavel fa-xs fa-fw"></i><i class="fas fa-user-circle fa-xs fa-fw"></i></a>
+                                                    <a class="btn btn-sm btn-light" title="Bidder" data-bind="attr: { href: '/AuctionApp/Bidder/' + Key }" target="_blank"><i class="fas fa-gavel fa-xs fa-fw"></i><i class="far fa-user-circle fa-xs fa-fw"></i></a>
                                                 </td>
                                             </tr>
                                         </tbody>

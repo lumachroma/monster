@@ -1,4 +1,6 @@
 ﻿using System.Configuration;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using FirebaseRest;
@@ -14,6 +16,7 @@ namespace Monster.Controllers
     public class AuctionAppController : Controller
     {
         private readonly FirebaseDataContext<Auction> _auctionContext;
+        private readonly FirebaseDataContext<User> _userContext;
 
         public AuctionAppController()
         {
@@ -22,6 +25,45 @@ namespace Monster.Controllers
                                "MfX7DaAWOUjr0zJ2invYbaX6UceHZ3vrif0VGeL4";
             var firebaseQuery = new FirebaseQuery(new FirebaseClient(firebaseUrl, firebaseAuth));
             _auctionContext = new FirebaseDataContext<Auction>("Auctions", firebaseQuery);
+            _userContext = new FirebaseDataContext<User>("Users", firebaseQuery);
+        }
+
+        [Authorize]
+        public async Task<ActionResult> Dashboard()
+        {
+            ViewBag.Message = "The dashboard page.";
+            ViewBag.IsAdministrator = this.IsAdministrator();
+
+            var key = ((ClaimsIdentity)HttpContext.User.Identity).Claims
+                .Where(c => c.Type == ClaimTypes.NameIdentifier)
+                .Select(c => c.Value)
+                .First();
+
+            var admin = await _userContext.GetByKeyAsync(key);
+
+            return View(new FirebaseObject<User>(key, admin));
+        }
+
+        [Authorize]
+        public ActionResult Bio(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return this.BadRequest(string.Empty);
+
+            ViewBag.Key = key;
+            ViewBag.Message = "The bio page.";
+
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Password(string key)
+        {
+            if (string.IsNullOrEmpty(key)) return this.BadRequest(string.Empty);
+
+            ViewBag.Key = key;
+            ViewBag.Message = "The password page.";
+
+            return View();
         }
 
         [Authorize]

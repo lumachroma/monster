@@ -18,7 +18,7 @@
             <a class="btn btn-light" href="/Auction/Edit/@ViewBag.Key" title="Edit"><i class="fas fa-edit fa-fw"></i></a>
             <a class="btn btn-light" href="/Auction/Remove/@ViewBag.Key" title="Delete"><i class="fas fa-eraser fa-fw"></i></a>
         </div>
-        <a class="btn btn-light" href="/Auction/Dashboard">Cancel</a>
+        <a class="btn btn-light" href="/Auction">Cancel</a>
     </div>
 </div>
 @section scripts
@@ -27,7 +27,7 @@
     <script>
         $(function() {
             ko.applyBindings(modelView);
-            modelView.viewDetails("Auction", "@ViewBag.Title", "@ViewBag.Key", undefined, "/Auction/Dashboard");
+            modelView.viewDetails("Auction", "@ViewBag.Title", "@ViewBag.Key");
         });
     </script>
 }

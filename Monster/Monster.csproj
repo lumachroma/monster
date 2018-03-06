@@ -296,8 +296,8 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Auction\Dashboard.cshtml" />
-    <Content Include="Views\Auction\Bio.cshtml" />
+    <Content Include="Views\AuctionApp\Dashboard.cshtml" />
+    <Content Include="Views\AuctionApp\Bio.cshtml" />
     <Content Include="Views\User\Roles.cshtml" />
     <Content Include="Views\Auction\Create.cshtml" />
     <Content Include="Views\Auction\_DetailsValue.cshtml" />
@@ -306,7 +306,7 @@
     <Content Include="Views\Auction\_DetailsText.cshtml" />
     <Content Include="Views\Auction\Remove.cshtml" />
     <Content Include="Views\Auction\Index.cshtml" />
-    <Content Include="Views\Auction\Password.cshtml" />
+    <Content Include="Views\AuctionApp\Password.cshtml" />
     <Content Include="Views\AuctionApp\Bidder.cshtml" />
     <Content Include="Views\AuctionApp\Auctioneer.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />

@@ -15,7 +15,7 @@
     <div class="pt-4 pb-4">
         @Html.Partial("_DetailsValue")
         <button class="btn btn-light" data-bind="click: editEntity">Edit</button>
-        <a class="btn btn-light" href="/Auction/Dashboard">Cancel</a>
+        <a class="btn btn-light" href="/Auction">Cancel</a>
     </div>
 </div>
 @section scripts
@@ -35,7 +35,7 @@
                     dateInput: true
                 });
             };
-            modelView.viewDetails("Auction", "@ViewBag.Title", "@ViewBag.Key", undefined, "/Auction/Dashboard");
+            modelView.viewDetails("Auction", "@ViewBag.Title", "@ViewBag.Key");
         });
     </script>
 }
