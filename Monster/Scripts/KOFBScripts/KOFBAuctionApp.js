@@ -36,8 +36,8 @@
     resetCallTimer: function (auction) {
         var thisObj = this;
         if (auction.Status === "Started") {
+            var startTime = Date.now();//moment(auction.ChangedDate).valueOf();
             thisObj.callTimerIntervalID = setInterval(function () {
-                var startTime = Date.now();//moment(auction.ChangedDate).valueOf();
                 var elapsedTime = Date.now() - startTime;
                 var elapsedTimeInSeconds = (elapsedTime / 1000).toFixed(2);
                 thisObj.callTimerElapse(elapsedTimeInSeconds);
