@@ -85,8 +85,8 @@ namespace Monster.Controllers
         public async Task<ActionResult> Some(string key)
         {
             IReadOnlyCollection<FirebaseObject<Auction>> results;
-            if (this.IsAdministrator()) results = await _adminAuctionQuery.Some(key);
-            else results = await _userAuctionQuery.Some(key);
+            if (this.IsAdministrator()) results = await _adminAuctionQuery.Newest(key);
+            else results = await _userAuctionQuery.Newest(key);
             return this.Ok(JsonConvert.SerializeObject(results));
         }
 

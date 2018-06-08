@@ -21,9 +21,14 @@ namespace Monster.Firebase
             return await _context.GetAllAsync();
         }
 
-        public override async Task<IReadOnlyCollection<FirebaseObject<T>>> Some(string limit)
+        public override async Task<IReadOnlyCollection<FirebaseObject<T>>> Newest(string limit)
         {
             return await _context.Query.Child(_context.GetPath()).OrderByKey().LimitToLast(limit).GetAsync<T>();
+        }
+
+        public override async Task<IReadOnlyCollection<FirebaseObject<T>>> Oldest(string limit)
+        {
+            return await _context.Query.Child(_context.GetPath()).OrderByKey().LimitToFirst(limit).GetAsync<T>();
         }
 
         public override async Task Delete(string key)
