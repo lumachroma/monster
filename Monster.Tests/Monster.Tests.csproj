@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FirebaseRepository\AdminControllerQueryEntityTest.cs" />
     <Compile Include="FirebaseRepository\FirebaseRepositoryTests.cs" />
     <Compile Include="FirebaseRest\FirebaseQueryTests.cs" />
     <Compile Include="Mocks\MockFirebaseFixture.cs" />

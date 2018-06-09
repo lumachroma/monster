@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using FirebaseRepository;
 using FirebaseRest.Extensions;
 using FirebaseRest.Models;
+using WebGrease.Css.Extensions;
 
 namespace Monster.Firebase
 {
@@ -23,7 +26,8 @@ namespace Monster.Firebase
 
         public override async Task<IReadOnlyCollection<FirebaseObject<T>>> Newest(string limit)
         {
-            return await _context.Query.Child(_context.GetPath()).OrderByKey().LimitToLast(limit).GetAsync<T>();
+            var results = await _context.Query.Child(_context.GetPath()).OrderByKey().LimitToLast(limit).GetAsync<T>();
+            return results.Reverse().ToSafeReadOnlyCollection();
         }
 
         public override async Task<IReadOnlyCollection<FirebaseObject<T>>> Oldest(string limit)
@@ -53,7 +57,14 @@ namespace Monster.Firebase
 
         public override string GetCurrentUser()
         {
-            return HttpContext.Current.User.Identity.Name;
+            try
+            {
+                return HttpContext.Current.User.Identity.Name;
+            }
+            catch (NullReferenceException)
+            {
+                return "Anonymous";
+            }
         }
     }
 }

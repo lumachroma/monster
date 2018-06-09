@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web;
 using FirebaseRepository;
@@ -29,15 +30,13 @@ namespace Monster.Firebase
         public override async Task<IReadOnlyCollection<FirebaseObject<T>>> Newest(string limit)
         {
             return await _context.Query.Child(_context.GetPath())
-                .OrderBy("\"CreatedBy\"").EqualTo($"\"{GetCurrentUser()}\"").
-                LimitToLast(limit).GetAsync<T>();
+                .OrderBy("\"CreatedBy\"").EqualTo($"\"{GetCurrentUser()}\"").LimitToLast(limit).GetAsync<T>();
         }
 
         public override async Task<IReadOnlyCollection<FirebaseObject<T>>> Oldest(string limit)
         {
             return await _context.Query.Child(_context.GetPath())
-                .OrderBy("\"CreatedBy\"").EqualTo($"\"{GetCurrentUser()}\"").
-                LimitToFirst(limit).GetAsync<T>();
+                .OrderBy("\"CreatedBy\"").EqualTo($"\"{GetCurrentUser()}\"").LimitToFirst(limit).GetAsync<T>();
         }
 
         public override async Task Delete(string key)
@@ -70,7 +69,14 @@ namespace Monster.Firebase
 
         public override string GetCurrentUser()
         {
-            return HttpContext.Current.User.Identity.Name;
+            try
+            {
+                return HttpContext.Current.User.Identity.Name;
+            }
+            catch (NullReferenceException)
+            {
+                return "Anonymous";
+            }
         }
     }
 }

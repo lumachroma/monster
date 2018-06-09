@@ -93,7 +93,7 @@ namespace Monster.Firebase
         private static void InitNewEntity(T entity)
         {
             var now = DateTime.Now;
-            var who = HttpContext.Current.User.Identity.Name;
+            var who = GetCurrentUser();
             entity.Id = Guid.NewGuid().ToString();
             entity.CreatedDate = now;
             entity.CreatedBy = who;
@@ -118,7 +118,7 @@ namespace Monster.Firebase
         private static void InitNewEntity(dynamic entity)
         {
             var now = DateTime.Now;
-            var who = HttpContext.Current.User.Identity.Name;
+            var who = GetCurrentUser();
             entity.Id = Guid.NewGuid().ToString();
             entity.CreatedDate = now;
             entity.CreatedBy = who;
@@ -137,6 +137,18 @@ namespace Monster.Firebase
                 entity.Id = existing.Id;
                 entity.CreatedDate = existing.CreatedDate;
                 entity.CreatedBy = existing.CreatedBy;
+            }
+        }
+
+        private static string GetCurrentUser()
+        {
+            try
+            {
+                return HttpContext.Current.User.Identity.Name;
+            }
+            catch (NullReferenceException)
+            {
+                return "Anonymous";
             }
         }
     }
